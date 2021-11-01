@@ -40,10 +40,10 @@ jobs:
       - name: Install deps
         run: pnpm install
 
-      - name: Lint format
-        run: pnpm format
       - name: Lint check
         run: pnpm check
+      - name: Lint format
+        run: pnpm format
       - name: Lint
         run: pnpm lint
 
