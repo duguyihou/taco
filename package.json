@@ -1,6 +1,7 @@
 {
-	"name": "todo",
+	"name": "taco",
 	"version": "0.0.1",
+	"description": "todo with svelte",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
