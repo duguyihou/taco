@@ -46,8 +46,6 @@ jobs:
         run: pnpm check
       - name: Lint
         run: pnpm lint
-      - name: Lint
-        run: pnpm lint:css
 
   build:
     runs-on: ${{ matrix.os }}
