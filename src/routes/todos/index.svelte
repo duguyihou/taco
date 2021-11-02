@@ -47,14 +47,12 @@
 </script>
 
 <svelte:head>
-	<title>Todos</title>
+	<title>Taco</title>
 </svelte:head>
 
-<div class="todos">
-	<h1>Todos</h1>
-
+<div class="w-full leading-none">
 	<form
-		class="new"
+		class="m-2"
 		action="/todos.json"
 		method="post"
 		use:enhance={{
@@ -66,7 +64,12 @@
 			}
 		}}
 	>
-		<input name="text" aria-label="Add todo" placeholder="+ tap to add a todo" />
+		<input
+			class="w-full border-2 focus:shadow-lgborder-2 outline-none text-3xl px-4 py-2 rounded-lg text-left"
+			name="text"
+			aria-label="Add todo"
+			placeholder="+ tap to add a todo"
+		/>
 	</form>
 
 	{#each todos as todo (todo.uid)}
@@ -119,37 +122,6 @@
 </div>
 
 <style>
-	.todos {
-		width: 100%;
-		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
-		line-height: 1;
-	}
-
-	.new {
-		margin: 0 0 0.5rem 0;
-	}
-
-	input {
-		border: 1px solid transparent;
-	}
-
-	input:focus-visible {
-		box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.1);
-		border: 1px solid #ff3e00 !important;
-		outline: none;
-	}
-
-	.new input {
-		font-size: 28px;
-		width: 100%;
-		padding: 0.5em 1em 0.3em 1em;
-		box-sizing: border-box;
-		background: rgba(255, 255, 255, 0.05);
-		border-radius: 8px;
-		text-align: center;
-	}
-
 	.todo {
 		display: grid;
 		grid-template-columns: 2rem 1fr 2rem;
