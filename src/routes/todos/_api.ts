@@ -1,5 +1,5 @@
-import type { EndpointOutput, Request } from '@sveltejs/kit';
-import type { Locals } from '$lib/types';
+import type { EndpointOutput, Request } from '@sveltejs/kit'
+import type { Locals } from '$lib/types'
 
 /*
 	This module is used by the /todos.json and /todos/[uid].json
@@ -12,7 +12,7 @@ import type { Locals } from '$lib/types';
 	guarantees are made. Don't use it to organise your life.)
 */
 
-const base = 'https://api.svelte.dev';
+const base = 'https://api.svelte.dev'
 
 export async function api(
 	request: Request<Locals>,
@@ -21,7 +21,7 @@ export async function api(
 ): Promise<EndpointOutput> {
 	// user must have a cookie set
 	if (!request.locals.userid) {
-		return { status: 401 };
+		return { status: 401 }
 	}
 
 	const res = await fetch(`${base}/${resource}`, {
@@ -30,7 +30,7 @@ export async function api(
 			'content-type': 'application/json'
 		},
 		body: data && JSON.stringify(data)
-	});
+	})
 
 	// if the request came from a <form> submission, the browser's default
 	// behaviour is to show the URL corresponding to the form's "action"
@@ -42,11 +42,11 @@ export async function api(
 			headers: {
 				location: '/todos'
 			}
-		};
+		}
 	}
 
 	return {
 		status: res.status,
 		body: await res.json()
-	};
+	}
 }
