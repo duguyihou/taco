@@ -6,6 +6,10 @@
   command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm build"
   publish = "build"
 
+[functions]
+  directory = "functions"
+  node_bundler = "esbuild"
+
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
   #[dev]
