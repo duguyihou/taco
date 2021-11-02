@@ -6,10 +6,7 @@
   command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm build"
   publish = "build"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+
 
 
   ## (optional) Settings for Netlify Dev
