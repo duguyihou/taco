@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
-
+	import { todos } from '$lib/store/todos'
 	const { form, handleChange, handleSubmit } = createForm({
 		initialValues: {
 			newTodo: ''
 		},
-		onSubmit: (values) => {
-			alert(JSON.stringify(values))
+		onSubmit: ({ newTodo }) => {
+			$todos = [...$todos, newTodo].reverse()
+			$form.newTodo = ''
 		}
 	})
 </script>
