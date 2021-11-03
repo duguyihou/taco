@@ -1,10 +1,12 @@
 <script lang="ts">
-	export let value: string
+	import type { Todo } from '$lib/typings'
+	export let todo: Todo
+	$: ({ text } = todo)
 </script>
 
 <form class="form">
 	<input class="check" type="checkbox" />
-	<input class="input" name="newTodo" bind:value disabled />
+	<button type="text" class="value">{text}</button>
 </form>
 
 <style lang="postcss">
@@ -14,7 +16,7 @@
 	.check {
 		@apply w-5 h-5 mx-1 border-2 border-blue cursor-pointer flex justify-center items-center;
 	}
-	.input {
-		@apply flex-1 text-lg p-2 rounded outline-none  cursor-pointer;
+	.value {
+		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer;
 	}
 </style>

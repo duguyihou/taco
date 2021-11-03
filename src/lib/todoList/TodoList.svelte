@@ -4,7 +4,7 @@
 </script>
 
 {#each $todos as todo}
-	<Todo value={todo} />
+	<Todo {todo} />
 {:else}
 	<h1>no todo</h1>
 {/each}

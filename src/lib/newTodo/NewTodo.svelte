@@ -1,20 +1,28 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
 	import { todos } from '$lib/store/todos'
-	const { form, handleChange, handleSubmit } = createForm({
-		initialValues: {
-			newTodo: ''
-		},
-		onSubmit: ({ newTodo }) => {
-			$todos = [...$todos, newTodo].reverse()
-			$form.newTodo = ''
+	import { List, Todo } from '$lib/typings'
+
+	const initialValues = {
+		text: '',
+		list: List.Inbox,
+		stared: false
+	} as Todo
+	const { form, handleSubmit } = createForm({
+		initialValues,
+		onSubmit: ({ text, list, stared }) => {
+			if (text !== '') {
+				const newTodo = { text, list, stared }
+				$todos = [...$todos, newTodo].reverse()
+				$form.text = ''
+			}
 		}
 	})
 </script>
 
 <form class="form" on:submit={handleSubmit}>
-	<span class="icon">&plus;</span>
-	<input class="input" name="newTodo" on:change={handleChange} bind:value={$form.newTodo} />
+	<label for="newTodo" class="icon">&plus;</label>
+	<input class="input" id="newTodo" bind:value={$form.text} />
 </form>
 
 <style lang="postcss">
