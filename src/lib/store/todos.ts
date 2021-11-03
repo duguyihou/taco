@@ -1,3 +1,4 @@
-import { writable } from 'svelte/store'
+import type { Todo } from '$lib/typings'
 
-export const todos = writable<string[]>([])
+import { writable } from 'svelte/store'
+export const todos = writable<Todo[]>([])
