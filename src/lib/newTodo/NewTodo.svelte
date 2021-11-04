@@ -7,13 +7,14 @@
 	const initialValues = {
 		text: '',
 		list: List.Inbox,
-		starred: false
+		starred: false,
+		checked: false
 	} as Todo
 	const { form, handleSubmit } = createForm({
 		initialValues,
-		onSubmit: ({ text, list, starred }) => {
+		onSubmit: ({ text, list, starred, checked }) => {
 			if (text !== '') {
-				const newTodo = { text, list, starred }
+				const newTodo = { text, list, starred, checked }
 				$todos = [...$todos, newTodo].reverse()
 				$form.text = ''
 				$form.starred = false
