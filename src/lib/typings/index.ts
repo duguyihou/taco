@@ -1,7 +1,7 @@
 export interface Todo {
 	text: string
 	list: List
-	stared: boolean
+	starred: boolean
 }
 
 export enum List {

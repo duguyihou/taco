@@ -10,6 +10,9 @@ module.exports = {
 			},
 			white: {
 				DEFAULT: '#FFF'
+			},
+			red: {
+				DEFAULT: 'red'
 			}
 		},
 		extend: {
