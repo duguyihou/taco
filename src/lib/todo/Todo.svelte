@@ -1,12 +1,20 @@
 <script lang="ts">
+	import Star from '$lib/star/Star.svelte'
 	import type { Todo } from '$lib/typings'
 	export let todo: Todo
-	$: ({ text } = todo)
+	$: ({ text, starred } = todo)
+
+	function handleStar() {
+		starred = !starred
+	}
 </script>
 
 <form class="form">
 	<input class="check" type="checkbox" />
-	<button type="text" class="value">{text}</button>
+	<button type="button" class="value">{text}</button>
+	<div class="star-wrapper">
+		<Star {starred} on:star={() => handleStar()} />
+	</div>
 </form>
 
 <style lang="postcss">
@@ -18,5 +26,8 @@
 	}
 	.value {
 		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer;
+	}
+	.star-wrapper {
+		@apply mr-8 p-2;
 	}
 </style>
