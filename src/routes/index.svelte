@@ -7,14 +7,8 @@
 
 	let show = false
 
-	function showDetail(event: CustomEvent) {
-		show = !show
-		const { selected } = event.detail
-		console.log(selected)
-	}
-
-	let selectedTodo = $todos.filter(({ selected }) => selected)[0]
-	$: ({ checked, text, starred, selected } = selectedTodo)
+	let selectedTodo = $todos.find(({ selected }) => selected)
+	$: console.log(selectedTodo)
 </script>
 
 <svelte:head>
@@ -23,10 +17,10 @@
 
 <section class="main">
 	<NewTodo />
-	<TodoList on:detail={(event) => showDetail(event)} />
+	<TodoList />
 </section>
 <div class:hidden={!show} transition:fly={{ duration: 500, x: 300 }}>
-	<Detail bind:checked {text} {starred} bind:selected />
+	<Detail />
 </div>
 
 <style lang="postcss">

@@ -1,25 +1,22 @@
 <script lang="ts">
 	import Star from '$lib/star/Star.svelte'
-	import { createEventDispatcher } from 'svelte'
+	import { todos } from '$lib/store/todos'
+	import type { Todo } from '$lib/typings'
 
-	export let checked: boolean
-	export let starred: boolean
-	export let selected: boolean
-	export let text: string
-	const dispatch = createEventDispatcher()
+	export let todo: Todo
+	$: ({ checked, text, starred, selected } = todo)
 	function handleStar() {
 		starred = !starred
 	}
-	function handleDispatch() {
+	function handleSelect() {
 		selected = true
-		dispatch('detail', { selected })
+		$todos = $todos
 	}
 </script>
 
 <form class="form" class:checked>
 	<input class="check" type="checkbox" bind:checked />
-	<button type="button" class="value" class:checked on:click={() => handleDispatch()}>{text}</button
-	>
+	<button type="button" class="value" class:checked on:click={() => handleSelect()}>{text}</button>
 	<div class="star-wrapper">
 		<Star {starred} on:star={() => handleStar()} />
 	</div>
