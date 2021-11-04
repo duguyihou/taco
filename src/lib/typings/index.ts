@@ -3,6 +3,7 @@ export interface Todo {
 	list: List
 	starred: boolean
 	checked: boolean
+	selected: boolean
 }
 
 export enum List {
