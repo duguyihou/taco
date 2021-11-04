@@ -4,7 +4,7 @@
 </script>
 
 <Header />
-<main class="flex-1 flex flex-col w-full h-full box-border p-4 bg-blue-dark">
+<main class="flex-1 flex flex-col w-full h-full box-border p-4 bg-black-light">
 	<slot />
 </main>
 <footer class="absolute bottom-0 mx-auto inset-x-0">

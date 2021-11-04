@@ -22,7 +22,7 @@
 		@apply container bg-white h-auto mt-2 text-lg rounded flex flex-row justify-start items-center;
 	}
 	.check {
-		@apply w-5 h-5 mx-1 border-2 border-blue cursor-pointer flex justify-center items-center;
+		@apply w-5 h-5 mx-2 border-2 border-blue cursor-pointer flex justify-center items-center;
 	}
 	.value {
 		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer;

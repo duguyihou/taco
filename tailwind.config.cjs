@@ -5,14 +5,27 @@ module.exports = {
 		colors: {
 			blue: {
 				light: '#4E9FA9',
-				DEFAULT: '#2D323B',
-				dark: '#232323'
+				DEFAULT: 'rgba(56,139,253,0.4)',
+				dark: 'rgba(56,139,253,0.15)'
+			},
+			black: {
+				light: '#010409',
+				DEFAULT: '#010409',
+				dark: '#010409'
 			},
 			white: {
-				DEFAULT: '#FFF'
+				DEFAULT: '#fff',
+				dark: '#57606a'
 			},
 			red: {
-				DEFAULT: 'red'
+				light: '#f85149',
+				DEFAULT: '#c93c37',
+				dark: '#da3633'
+			},
+			grey: {
+				light: '#6e7681',
+				DEFAULT: 'rgba(110,118,129,0.4)',
+				dark: 'rgba(110,118,129,0.1)'
 			}
 		},
 		extend: {
