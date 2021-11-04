@@ -40,7 +40,7 @@
 		@apply container bg-white h-auto text-lg rounded flex flex-row justify-start items-center;
 	}
 	.icon {
-		@apply w-5 h-5 mx-1  flex justify-center items-center;
+		@apply w-5 h-5 mx-2 flex justify-center items-center;
 	}
 	.input {
 		@apply flex-1 text-lg p-2 rounded outline-none;
