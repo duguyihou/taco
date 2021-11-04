@@ -15,7 +15,7 @@
 
 <style lang="postcss">
 	.star {
-		@apply w-6 h-6 rounded-full p-1 bg-white;
+		@apply w-6 h-6 rounded-full p-1;
 	}
 	.starred {
 		@apply w-6 h-6 rounded-full p-1 bg-red;
