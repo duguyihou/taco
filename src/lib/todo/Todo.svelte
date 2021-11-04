@@ -1,18 +1,25 @@
 <script lang="ts">
 	import Star from '$lib/star/Star.svelte'
+	import { createEventDispatcher } from 'svelte'
 
 	export let checked: boolean
 	export let starred: boolean
+	export let selected: boolean
 	export let text: string
-
+	const dispatch = createEventDispatcher()
 	function handleStar() {
 		starred = !starred
+	}
+	function handleDispatch() {
+		selected = true
+		dispatch('detail', { selected })
 	}
 </script>
 
 <form class="form" class:checked>
 	<input class="check" type="checkbox" bind:checked />
-	<button type="button" class="value" class:checked>{text}</button>
+	<button type="button" class="value" class:checked on:click={() => handleDispatch()}>{text}</button
+	>
 	<div class="star-wrapper">
 		<Star {starred} on:star={() => handleStar()} />
 	</div>
