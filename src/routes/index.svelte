@@ -7,7 +7,13 @@
 	<title>Home</title>
 </svelte:head>
 
-<section class="container flex flex-col justify-start items-center">
+<section class="main">
 	<NewTodo />
 	<TodoList />
 </section>
+
+<style lang="postcss">
+	.main {
+		@apply container flex flex-col justify-start items-center;
+	}
+</style>
