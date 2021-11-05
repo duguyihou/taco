@@ -7,7 +7,7 @@
 </script>
 
 <section class="detail">
-	<SelectedTodo {selectedTodo} />
+	<SelectedTodo bind:selectedTodo />
 </section>
 
 <style lang="postcss">

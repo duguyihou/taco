@@ -3,6 +3,7 @@
 	import starSvg from './star.svg'
 
 	export let starred = false
+
 	const dispatch = createEventDispatcher()
 	function handleDispatch() {
 		dispatch('star')
