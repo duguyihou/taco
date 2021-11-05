@@ -5,10 +5,8 @@
 	import TodoList from '$lib/todoList/TodoList.svelte'
 	import { todos } from '$lib/store/todos'
 
-	let show = false
-
-	let selectedTodo = $todos.find(({ selected }) => selected)
-	$: console.log(selectedTodo)
+	$: selectedTodo = $todos.find(({ selected }) => selected)
+	$: show = !!selectedTodo
 </script>
 
 <svelte:head>
