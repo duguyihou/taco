@@ -7,6 +7,7 @@
 
 	$: selectedTodo = $todos.find(({ selected }) => selected)
 	$: show = !!selectedTodo
+	$: console.log(selectedTodo)
 </script>
 
 <svelte:head>

@@ -4,7 +4,6 @@
 	import type { Todo as TodoProps } from '$lib/typings'
 
 	export let selectedTodo: TodoProps
-	$: console.log(selectedTodo)
 </script>
 
 <section class="detail">
