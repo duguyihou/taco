@@ -9,7 +9,7 @@
 </script>
 
 {#each undos as todo}
-	<Todo bind:todo />
+	<Todo {todo} />
 {:else}
 	<h1>no todo</h1>
 {/each}

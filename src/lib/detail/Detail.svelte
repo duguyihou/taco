@@ -1,17 +1,18 @@
 <script lang="ts">
-	// import SelectedTodo from '$lib/selectedTodo/SelectedTodo.svelte'
+	import SelectedTodo from '$lib/selectedTodo/SelectedTodo.svelte'
 	// import Todo from '$lib/todo/Todo.svelte'
-	// import type { Todo as TodoProps } from '$lib/typings'
+	import type { Todo as TodoProps } from '$lib/typings'
 
-	// export let selectedTodo: TodoProps
+	export let selectedTodo: TodoProps
+	$: console.log(selectedTodo)
 </script>
 
 <section class="detail">
-	<h1 class="bg-white text-3xl">detail</h1>
+	<SelectedTodo {selectedTodo} />
 </section>
 
 <style lang="postcss">
 	.detail {
-		@apply w-80 h-full;
+		@apply w-80 h-full mx-2 bg-blue-light border-2 shadow-lg flex flex-col justify-start items-center;
 	}
 </style>

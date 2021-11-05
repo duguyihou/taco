@@ -18,7 +18,7 @@
 	<TodoList />
 </section>
 <div class:hidden={!show} transition:fly={{ duration: 500, x: 300 }}>
-	<Detail />
+	<Detail {selectedTodo} />
 </div>
 
 <style lang="postcss">

@@ -4,15 +4,21 @@
 	import type { Todo } from '$lib/typings'
 
 	export let todo: Todo
-	$: ({ checked, text, starred } = todo)
+	$: ({ id, checked, text, starred } = todo)
+
 	function handleStar() {
 		starred = !starred
+		// $todos = $todos.filter((todo) => todo.id !== id)
+		const selectedTodo = { ...todo, starred }
+		$todos = [selectedTodo, ...$todos]
 	}
 	function handleSelect() {
-		$todos = $todos.filter((todo) => todo.text !== text) // should use id later
+		// $todos = $todos.filter((todo) => todo.id !== id)
 		const selectedTodo = { ...todo, selected: true }
 		$todos = [selectedTodo, ...$todos]
 	}
+
+	// $: console.log($todos.map(({ checked }) => checked))
 </script>
 
 <form class="form" class:checked>

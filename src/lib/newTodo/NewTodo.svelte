@@ -3,8 +3,10 @@
 	import { todos } from '$lib/store/todos'
 	import { List, Todo } from '$lib/typings'
 	import Star from '$lib/star/Star.svelte'
+	import { v4 as uuid } from '@lukeed/uuid'
 
 	const initialValues = {
+		id: uuid(),
 		text: '',
 		list: List.Inbox,
 		starred: false,
@@ -13,12 +15,13 @@
 	} as Todo
 	const { form, handleSubmit } = createForm({
 		initialValues,
-		onSubmit: ({ text, list, starred, checked, selected }) => {
+		onSubmit: ({ id, text, list, starred, checked, selected }) => {
 			if (text !== '') {
-				const newTodo = { text, list, starred, checked, selected }
+				const newTodo = { id, text, list, starred, checked, selected }
 				$todos = [...$todos, newTodo].reverse()
 				$form.text = ''
 				$form.starred = false
+				console.log($todos)
 			}
 		}
 	})
