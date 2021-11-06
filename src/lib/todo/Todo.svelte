@@ -18,7 +18,7 @@
 
 <style lang="postcss">
 	.form {
-		@apply container bg-white h-auto mt-2 text-lg rounded flex flex-row justify-start items-center;
+		@apply container bg-grey-light border-2 border-grey-light h-auto mt-2 text-lg rounded flex flex-row justify-start items-center;
 	}
 	.check {
 		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
