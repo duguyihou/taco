@@ -1,20 +1,18 @@
 <script lang="ts">
 	import Star from '$lib/star/Star.svelte'
 	import type { Todo } from '$lib/typings'
-	import { handleStar, handleSelect } from '../../hooks'
-
+	import { handleStar, handleSelect, handleCheck } from '$lib/store'
 	export let todo: Todo
-	export let checked: boolean
-	$: ({ id, text, starred } = todo)
+	$: ({ text, starred, checked } = todo)
 </script>
 
 <form class="form" class:checked>
-	<input class="check" type="checkbox" bind:checked on:click={() => console.log(checked)} />
+	<input class="check" type="checkbox" {checked} on:click={() => handleCheck(todo)} />
 	<button type="button" class="value" class:checked on:click={() => handleSelect(todo)}
 		>{text}</button
 	>
 	<div class="star-wrapper">
-		<Star {starred} on:star={() => handleStar(id, starred)} />
+		<Star {starred} on:star={() => handleStar(todo)} />
 	</div>
 </form>
 

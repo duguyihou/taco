@@ -3,9 +3,9 @@
 	import Detail from '$lib/detail/Detail.svelte'
 	import NewTodo from '$lib/newTodo/NewTodo.svelte'
 	import TodoList from '$lib/todoList/TodoList.svelte'
-	import { todos } from '$lib/store/todos'
+	import store from '$lib/store'
 
-	$: selectedTodo = $todos.todos.find(({ selected }) => selected)
+	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 </script>
 
 <svelte:head>

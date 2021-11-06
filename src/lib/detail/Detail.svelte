@@ -7,7 +7,7 @@
 
 {#if selectedTodo}
 	<section class="detail">
-		<SelectedTodo {selectedTodo} bind:checked={selectedTodo.checked} />
+		<SelectedTodo {selectedTodo} />
 	</section>
 {/if}
 
