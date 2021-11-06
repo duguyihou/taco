@@ -3,7 +3,7 @@
 	import Detail from '$lib/detail/Detail.svelte'
 	import NewTodo from '$lib/newTodo/NewTodo.svelte'
 	import TodoList from '$lib/todoList/TodoList.svelte'
-	import { store } from '$lib/store'
+	import store from '$lib/store'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 </script>
