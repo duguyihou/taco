@@ -14,3 +14,9 @@ export enum List {
 export interface Todos {
 	todos: Todo[]
 }
+
+export interface Store {
+	todos: Todo[]
+	loading: boolean
+	error: string
+}

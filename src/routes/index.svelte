@@ -3,9 +3,12 @@
 	import Detail from '$lib/detail/Detail.svelte'
 	import NewTodo from '$lib/newTodo/NewTodo.svelte'
 	import TodoList from '$lib/todoList/TodoList.svelte'
-	import store from '$lib/store'
+	import store, { fetchTodos } from '$lib/store'
+	import { onMount } from 'svelte'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
+
+	onMount(async () => await fetchTodos)
 </script>
 
 <svelte:head>
