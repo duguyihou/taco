@@ -1,14 +1,15 @@
 <script lang="ts">
 	import SelectedTodo from '$lib/selectedTodo/SelectedTodo.svelte'
-	// import Todo from '$lib/todo/Todo.svelte'
-	import type { Todo as TodoProps } from '$lib/typings'
+	import type { Todo } from '$lib/typings'
 
-	export let selectedTodo: TodoProps
+	export let selectedTodo: Todo
 </script>
 
-<section class="detail">
-	<SelectedTodo bind:selectedTodo />
-</section>
+{#if selectedTodo}
+	<section class="detail">
+		<SelectedTodo {selectedTodo} bind:checked={selectedTodo.checked} />
+	</section>
+{/if}
 
 <style lang="postcss">
 	.detail {

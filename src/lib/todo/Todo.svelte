@@ -1,37 +1,20 @@
 <script lang="ts">
 	import Star from '$lib/star/Star.svelte'
 	import type { Todo } from '$lib/typings'
-	import { todoList } from '$lib/store/todoList'
+	import { handleStar, handleSelect } from '../../hooks'
 
 	export let todo: Todo
-	$: ({ id, checked, text, starred } = todo)
-
-	function handleStar() {
-		$todoList.starredIds = [id, ...$todoList.starredIds]
-		const todo = $todoList.todos.find((todo) => todo.id === id)
-		const idx = $todoList.todos.indexOf(todo)
-		const starredTodo = { ...todo, starred: !starred }
-		$todoList.todos.splice(idx, 1, starredTodo)
-		$todoList.todos = $todoList.todos
-	}
-
-	function handleSelect(todo: Todo) {
-		$todoList.selectedTodo = todo
-		const idx = $todoList.todos.indexOf(todo)
-		const selectedTodo = { ...todo, selected: true }
-		$todoList.todos.splice(idx, 1, selectedTodo)
-		$todoList.todos = $todoList.todos
-		console.log($todoList.selectedTodo.text)
-	}
+	export let checked: boolean
+	$: ({ id, text, starred } = todo)
 </script>
 
 <form class="form" class:checked>
-	<input class="check" type="checkbox" bind:checked />
+	<input class="check" type="checkbox" bind:checked on:click={() => console.log(checked)} />
 	<button type="button" class="value" class:checked on:click={() => handleSelect(todo)}
 		>{text}</button
 	>
 	<div class="star-wrapper">
-		<Star {starred} on:star={() => handleStar()} />
+		<Star {starred} on:star={() => handleStar(id, starred)} />
 	</div>
 </form>
 
