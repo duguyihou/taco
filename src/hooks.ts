@@ -1,13 +1,13 @@
-import { todos } from '$lib/store/todos'
+import { store } from '$lib/store'
 import type { Todo } from '$lib/typings'
 import { get } from 'svelte/store'
 
-const todoList = get(todos)
+const todoList = get(store)
 
 const updateTodos = (todo, payload) => {
 	const idx = todoList.todos.indexOf(todo)
 	todoList.todos.splice(idx, 1, payload)
-	todos.set(todoList)
+	store.set(todoList)
 }
 export const handleStar = (id: string, starred: boolean): void => {
 	const todo = todoList.todos.find((todo) => todo.id === id)
@@ -17,7 +17,7 @@ export const handleStar = (id: string, starred: boolean): void => {
 
 export const handleSelect = (todo: Todo): void => {
 	todoList.todos.forEach((todo) => (todo.selected = false))
-	todos.set(todoList)
+	store.set(todoList)
 	const newTodo = { ...todo, selected: true }
 	updateTodos(todo, newTodo)
 }

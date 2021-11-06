@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
-	import { todos } from '$lib/store/todos'
+	import { store } from '$lib/store'
 	import { List, Todo } from '$lib/typings'
 	import Star from '$lib/star/Star.svelte'
 	import { v4 as uuid } from '@lukeed/uuid'

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Todo from '$lib/todo/Todo.svelte'
-	import { todos } from '$lib/store/todos'
+	import { todos } from '$lib/store'
 
 	$: undos = $todos.todos.filter(({ checked }) => !checked)
 	$: dones = $todos.todos.filter(({ checked }) => checked)
