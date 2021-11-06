@@ -14,9 +14,9 @@
 	<h1>no todo</h1>
 {/each}
 
-<!-- {#if showDones}
-	<h1 class="text-white">done</h1>
-{/if}
-{#each dones as todo}
-	<Todo {todo} />
-{/each} -->
+// <!-- {#if showDones}
+// 	<h1 class="text-white">done</h1>
+// {/if}
+// {#each dones as todo}
+// 	<Todo {todo} />
+// {/each} -->

@@ -1,9 +1,9 @@
-import type { Todos, Todo } from '$lib/typings'
-import todoData from '../../static/todoData.json'
-
+import type { Store, Todo } from '$lib/typings'
 import { writable } from 'svelte/store'
-const initialState = todoData
-export const store = writable<Todos>(initialState)
+import { fetchTodosUrl } from '$lib/api/todoAPI'
+
+const initialState = { todos: [], loading: false, error: '' }
+export const store = writable<Store>(initialState)
 
 export const handleStar = (payload: Todo): void => {
 	store.update((state) => {
@@ -35,4 +35,22 @@ export const handleCheck = (payload: Todo): void => {
 	})
 }
 
+const request = async (method: string, url: string, params?: never): Promise<void> => {
+	store.update((state) => ({ ...state, loading: true }))
+	try {
+		const headers = { 'Content-type': 'application/json' }
+		const body = params ? JSON.stringify(params) : undefined
+		const response = await fetch(url, { method, body, headers })
+		const json = await response.json()
+		if (response.ok) {
+			store.set(json)
+		} else {
+			store.update((state) => ({ ...state, error: json.errors }))
+		}
+	} catch (e) {
+		console.log(e)
+	}
+}
+
+export const fetchTodos = request('GET', fetchTodosUrl)
 export default store
