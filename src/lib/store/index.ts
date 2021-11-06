@@ -28,7 +28,9 @@ export const handleCheck = (payload: Todo): void => {
 	store.update((state) => {
 		const idx = state.todos.indexOf(payload)
 		const newTodo = { ...payload, checked: !payload.checked }
+		console.log(newTodo.text)
 		state.todos.splice(idx, 1, newTodo)
+		console.log(state.todos.map((todo) => todo.checked))
 		return state
 	})
 }

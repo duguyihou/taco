@@ -3,8 +3,7 @@
 	import type { Todo } from '$lib/typings'
 	import { handleStar, handleSelect, handleCheck } from '$lib/store'
 	export let todo: Todo
-	export let checked: boolean
-	$: ({ id, text, starred } = todo)
+	$: ({ text, starred, checked } = todo)
 </script>
 
 <form class="form" class:checked>

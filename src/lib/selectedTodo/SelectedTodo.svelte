@@ -4,8 +4,7 @@
 	import type { Todo } from '$lib/typings'
 
 	export let selectedTodo: Todo
-	export let checked: boolean
-	$: ({ text, starred } = selectedTodo)
+	$: ({ text, starred, checked } = selectedTodo)
 </script>
 
 <form class="form" class:checked>
