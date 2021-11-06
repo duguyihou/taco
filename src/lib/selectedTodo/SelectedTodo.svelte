@@ -1,18 +1,22 @@
 <script lang="ts">
 	import Star from '$lib/star/Star.svelte'
+	import { todos } from '$lib/store/todos'
 	import type { Todo } from '$lib/typings'
 
 	export let selectedTodo: Todo
+
 	let checked: boolean
-	let text: string
 	let starred: boolean
+	let text: string
 	$: if (selectedTodo) {
 		checked = selectedTodo.checked
-		text = selectedTodo.text
 		starred = selectedTodo.starred
+		text = selectedTodo.text
 	}
+
 	function handleStar() {
 		starred = !starred
+		console.log($todos)
 	}
 </script>
 

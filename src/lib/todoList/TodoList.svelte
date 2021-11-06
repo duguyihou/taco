@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Todo from '$lib/todo/Todo.svelte'
-	import { todoList } from '$lib/store/todoList'
+	import { todos } from '$lib/store/todos'
 
-	$: undos = $todoList.todos.filter(({ checked }) => !checked)
-	$: dones = $todoList.todos.filter(({ checked }) => checked)
+	$: undos = $todos.todos.filter(({ checked }) => !checked)
+	$: dones = $todos.todos.filter(({ checked }) => checked)
 
 	$: showDones = dones.length
 </script>

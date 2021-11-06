@@ -3,7 +3,9 @@
 	import Detail from '$lib/detail/Detail.svelte'
 	import NewTodo from '$lib/newTodo/NewTodo.svelte'
 	import TodoList from '$lib/todoList/TodoList.svelte'
-	import { todoList } from '$lib/store/todoList'
+	import { todos } from '$lib/store/todos'
+
+	$: selectedTodo = $todos.todos.find(({ selected }) => selected)
 </script>
 
 <svelte:head>
@@ -15,8 +17,8 @@
 	<TodoList />
 </section>
 
-<div class:hidden={!$todoList.selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
-	<Detail bind:selectedTodo={$todoList.selectedTodo} />
+<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
+	<Detail {selectedTodo} />
 </div>
 
 <style lang="postcss">

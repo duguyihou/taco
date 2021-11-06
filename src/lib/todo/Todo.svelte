@@ -1,27 +1,27 @@
 <script lang="ts">
 	import Star from '$lib/star/Star.svelte'
 	import type { Todo } from '$lib/typings'
-	import { todoList } from '$lib/store/todoList'
+	import { todos } from '$lib/store/todos'
 
 	export let todo: Todo
 	export let checked: boolean
 	$: ({ id, text, starred } = todo)
 
 	function handleStar() {
-		$todoList.starredIds = [id, ...$todoList.starredIds]
-		const todo = $todoList.todos.find((todo) => todo.id === id)
-		const idx = $todoList.todos.indexOf(todo)
+		const todo = $todos.todos.find((todo) => todo.id === id)
+		const idx = $todos.todos.indexOf(todo)
 		const starredTodo = { ...todo, starred: !starred }
-		$todoList.todos.splice(idx, 1, starredTodo)
-		$todoList.todos = $todoList.todos
+		$todos.todos.splice(idx, 1, starredTodo)
+		$todos.todos = $todos.todos
 	}
 
 	function handleSelect(todo: Todo) {
-		$todoList.selectedTodo = todo
-		const idx = $todoList.todos.indexOf(todo)
+		$todos.todos.forEach((todo) => (todo.selected = false))
+		$todos.todos = $todos.todos
+		const idx = $todos.todos.indexOf(todo)
 		const selectedTodo = { ...todo, selected: true }
-		$todoList.todos.splice(idx, 1, selectedTodo)
-		$todoList.todos = $todoList.todos
+		$todos.todos.splice(idx, 1, selectedTodo)
+		$todos.todos = $todos.todos
 	}
 </script>
 
