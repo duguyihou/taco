@@ -18,7 +18,7 @@
 		onSubmit: ({ text, list, starred, checked, selected }) => {
 			if (text !== '') {
 				const newTodo = { id: uuid(), text, list, starred, checked, selected }
-				$todos.todos = [newTodo, ...$todos.todos]
+				$store.todos = [newTodo, ...$store.todos]
 				$form.text = ''
 				$form.starred = false
 				$form.id = ''

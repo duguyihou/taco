@@ -4,7 +4,7 @@ import { get } from 'svelte/store'
 
 const todoList = get(store)
 
-const updateTodos = (todo, payload) => {
+const updateTodos = (todo: Todo, payload: Todo) => {
 	const idx = todoList.todos.indexOf(todo)
 	todoList.todos.splice(idx, 1, payload)
 	store.set(todoList)
