@@ -4,7 +4,8 @@
 	import { todoList } from '$lib/store/todoList'
 
 	export let todo: Todo
-	$: ({ id, checked, text, starred } = todo)
+	export let checked: boolean
+	$: ({ id, text, starred } = todo)
 
 	function handleStar() {
 		$todoList.starredIds = [id, ...$todoList.starredIds]
@@ -21,7 +22,6 @@
 		const selectedTodo = { ...todo, selected: true }
 		$todoList.todos.splice(idx, 1, selectedTodo)
 		$todoList.todos = $todoList.todos
-		console.log($todoList.selectedTodo.text)
 	}
 </script>
 
