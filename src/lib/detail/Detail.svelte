@@ -5,9 +5,11 @@
 	export let selectedTodo: Todo
 </script>
 
-<section class="detail">
-	<SelectedTodo bind:selectedTodo />
-</section>
+{#if selectedTodo}
+	<section class="detail">
+		<SelectedTodo {selectedTodo} bind:checked={selectedTodo.checked} />
+	</section>
+{/if}
 
 <style lang="postcss">
 	.detail {

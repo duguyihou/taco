@@ -1,26 +1,30 @@
-import cookie from 'cookie'
-import { v4 as uuid } from '@lukeed/uuid'
-import type { Handle } from '@sveltejs/kit'
+import { todos } from '$lib/store/todos'
+import type { Todo } from '$lib/typings'
+import { get } from 'svelte/store'
 
-export const handle: Handle = async ({ request, resolve }) => {
-	const cookies = cookie.parse(request.headers.cookie || '')
-	request.locals.userid = cookies.userid || uuid()
+const todoList = get(todos)
 
-	// TODO https://github.com/sveltejs/kit/issues/1046
-	if (request.query.has('_method')) {
-		request.method = request.query.get('_method').toUpperCase()
-	}
+const updateTodos = (todo, payload) => {
+	const idx = todoList.todos.indexOf(todo)
+	todoList.todos.splice(idx, 1, payload)
+	todos.set(todoList)
+}
+export const handleStar = (id: string, starred: boolean): void => {
+	const todo = todoList.todos.find((todo) => todo.id === id)
+	const newTodo = { ...todo, starred: !starred }
+	updateTodos(todo, newTodo)
+}
 
-	const response = await resolve(request)
+export const handleSelect = (todo: Todo): void => {
+	todoList.todos.forEach((todo) => (todo.selected = false))
+	todos.set(todoList)
+	const newTodo = { ...todo, selected: true }
+	updateTodos(todo, newTodo)
+}
 
-	if (!cookies.userid) {
-		// if this is the first time the user has visited this app,
-		// set a cookie so that we recognise them when they return
-		response.headers['set-cookie'] = cookie.serialize('userid', request.locals.userid, {
-			path: '/',
-			httpOnly: true
-		})
-	}
+export const handleCheck = (todo: Todo, checked: boolean): void => {
+	const newTodo = { ...todo, checked: !checked }
 
-	return response
+	updateTodos(todo, newTodo)
+	console.log(newTodo)
 }

@@ -18,5 +18,5 @@
 	<h1 class="text-white">done</h1>
 {/if}
 {#each dones as todo}
-	<Todo bind:todo bind:checked={todo.checked} />
+	<Todo {todo} bind:checked={todo.checked} />
 {/each}
