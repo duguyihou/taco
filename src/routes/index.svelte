@@ -18,10 +18,6 @@
 	$: console.log($selectedStore)
 </script>
 
-<svelte:head>
-	<title>Home</title>
-</svelte:head>
-
 <Sidebar />
 {#if $selectedStore}
 	<section class="main">

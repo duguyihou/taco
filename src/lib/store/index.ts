@@ -53,8 +53,10 @@ export const handleCheck = (payload: Todo): void => {
  */
 export const update = (payload?: List): void => {
 	const todos = derived(store, (store) => store.todos.filter(({ list }) => list === payload))
+	const title = `${payload.toString().charAt(0).toUpperCase()}${payload.toString().slice(1)}`
+	document.title = `${title} | Taco`
 	selectedStore.update((state) => {
-		state.title = payload.toUpperCase()
+		state.title = title
 		state.todos = get(todos)
 		return state
 	})
