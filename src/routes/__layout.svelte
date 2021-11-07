@@ -4,12 +4,9 @@
 </script>
 
 <Header />
-<main class="flex-1 flex flex-row w-full h-full box-border p-4 bg-grey-light">
+<main class="flex-1 flex flex-row w-full h-full box-border p-4 bg-blue-light">
 	<slot />
 </main>
-<footer class="absolute bottom-0 mx-auto inset-x-0">
-	<p class="text-center">taco</p>
-</footer>
 
 <style global lang="postcss">
 	@tailwind base;

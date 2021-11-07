@@ -17,7 +17,7 @@
 
 <style lang="postcss">
 	.form {
-		@apply container bg-white h-auto text-lg rounded flex flex-row justify-start items-center;
+		@apply container bg-grey-light h-auto text-lg rounded flex flex-row justify-start items-center shadow-sm hover:bg-grey;
 	}
 	.check {
 		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
@@ -26,7 +26,7 @@
 		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer;
 	}
 	.checked {
-		@apply line-through bg-grey-light;
+		@apply line-through bg-grey-dark border-2 border-grey-dark;
 	}
 	.star-wrapper {
 		@apply mr-8 p-2;
