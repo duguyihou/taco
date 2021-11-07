@@ -8,7 +8,9 @@ export interface Todo {
 }
 
 export enum List {
-	Inbox
+	Inbox = 1,
+	Starred = 2,
+	All = Inbox | Starred
 }
 
 export interface Todos {

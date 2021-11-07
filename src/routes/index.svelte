@@ -5,6 +5,7 @@
 	import TodoList from '$lib/todoList/TodoList.svelte'
 	import store, { fetchTodos } from '$lib/store'
 	import { onMount } from 'svelte'
+	import Header from '$lib/header/Header.svelte'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 
@@ -14,8 +15,8 @@
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
-
 <section class="main">
+	<Header title="Inbox" />
 	<NewTodo />
 	<TodoList />
 </section>

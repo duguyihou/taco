@@ -2,7 +2,7 @@
 	import '../app.postcss'
 </script>
 
-<main class="flex-1 flex flex-row w-full h-full box-border p-4 bg-blue-light">
+<main class="flex-1 flex flex-row w-full h-full box-border px-4 bg-blue-light">
 	<slot />
 </main>
 
