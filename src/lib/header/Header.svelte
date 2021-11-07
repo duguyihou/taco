@@ -1,10 +1,9 @@
 <script lang="ts">
 	export let title: string
-	$: value = title.toUpperCase()
 </script>
 
 <header class="header">
-	<div class="title">{value}</div>
+	<div class="title">{title}</div>
 </header>
 
 <style lang="postcss">
