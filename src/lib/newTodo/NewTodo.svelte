@@ -48,7 +48,7 @@
 		@apply w-5 h-5 mx-2 flex justify-center items-center;
 	}
 	.input {
-		@apply flex-1 text-lg p-2 bg-grey-light  rounded outline-none;
+		@apply flex-1 text-lg p-2 bg-grey-light rounded outline-none focus:shadow-lg;
 	}
 	.star-wrapper {
 		@apply mr-8 p-2;
