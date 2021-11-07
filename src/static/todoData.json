@@ -3,7 +3,7 @@
 		{
 			"id": "82a383ab-dc0f-4ca9-a406-acc363e826c7",
 			"text": "1",
-			"list": "inbox",
+			"list": "Inbox",
 			"starred": false,
 			"checked": false,
 			"selected": false
@@ -11,7 +11,7 @@
 		{
 			"id": "1082a383-abdc-4f0c-a9a4-06acc363e826",
 			"text": "2",
-			"list": "today",
+			"list": "Today",
 			"starred": true,
 			"checked": false,
 			"selected": false
@@ -19,7 +19,7 @@
 		{
 			"id": "5c1082a3-83ab-4c0f-8ca9-a406acc363e8",
 			"text": "4",
-			"list": "week",
+			"list": "Week",
 			"starred": false,
 			"checked": false,
 			"selected": false
@@ -27,7 +27,7 @@
 		{
 			"id": "995c1082-a383-4bdc-8f0c-a9a406acc363",
 			"text": "7",
-			"list": "inbox",
+			"list": "Inbox",
 			"starred": false,
 			"checked": false,
 			"selected": false

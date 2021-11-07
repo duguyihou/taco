@@ -20,6 +20,13 @@ export const handleStar = (payload: Todo): void => {
 		return state
 	})
 }
+
+export const cancelSelect = (): void => {
+	store.update((state) => {
+		state.todos.forEach((todo) => (todo.selected = false))
+		return state
+	})
+}
 /**
  * handle select
  * @param payload todo which select

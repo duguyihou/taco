@@ -10,7 +10,7 @@
 	<SidebarHeader />
 	<ul>
 		{#each lists as list}
-			<li on:click={() => update(list)}>{list.toUpperCase()}</li>
+			<li on:click={() => update(list)}>{list.toString()}</li>
 		{/each}
 	</ul>
 </section>

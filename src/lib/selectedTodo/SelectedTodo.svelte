@@ -1,23 +1,32 @@
 <script lang="ts">
-	import { handleCheck, handleStar } from '$lib/store'
+	import { handleCheck, handleStar, cancelSelect } from '$lib/store'
 	import Star from '$lib/star/Star.svelte'
 	import type { Todo } from '$lib/typings'
 
 	export let selectedTodo: Todo
-	$: ({ text, starred, checked } = selectedTodo)
+	$: ({ text, starred, checked, list } = selectedTodo)
 </script>
 
 <form class="form" class:checked>
-	<input class="check" type="checkbox" {checked} on:click={() => handleCheck(selectedTodo)} />
-	<button type="button" class="value" class:checked>{text}</button>
-	<div class="star-wrapper">
-		<Star {starred} on:star={() => handleStar(selectedTodo)} />
+	<header>
+		<span>{list}</span>
+		<span class="star-wrapper">
+			<Star {starred} on:star={() => handleStar(selectedTodo)} />
+			<button class="close" on:click={() => cancelSelect()}>&#215;</button>
+		</span>
+	</header>
+	<div class="item">
+		<input class="check" type="checkbox" {checked} on:click={() => handleCheck(selectedTodo)} />
+		<button type="button" class="value" class:checked>{text}</button>
 	</div>
 </form>
 
 <style lang="postcss">
 	.form {
-		@apply container bg-grey-light h-auto text-lg rounded flex flex-row justify-start items-center shadow-sm hover:bg-grey;
+		@apply container bg-grey-light h-auto p-2 text-lg rounded flex flex-col justify-start items-center shadow-sm hover:bg-grey;
+	}
+	header {
+		@apply w-full flex flex-row justify-between items-center;
 	}
 	.check {
 		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
@@ -29,6 +38,13 @@
 		@apply line-through bg-grey-dark border-2 border-grey-dark;
 	}
 	.star-wrapper {
-		@apply mr-8 p-2;
+		@apply flex flex-row justify-between items-center;
+	}
+	.close {
+		@apply text-3xl ml-2;
+	}
+
+	.item {
+		@apply w-full flex flex-row justify-start items-center;
 	}
 </style>
