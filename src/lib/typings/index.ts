@@ -5,12 +5,13 @@ export interface Todo {
 	starred: boolean
 	checked: boolean
 	selected: boolean
+	due?: string
 }
 
 export enum List {
-	Inbox = 'inbox',
-	Today = 'today',
-	Week = 'week'
+	Inbox = 'Inbox',
+	Today = 'Today',
+	Week = 'Week'
 }
 
 export interface Todos {
