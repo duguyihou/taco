@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Header from '$lib/header/Header.svelte'
-	import '../app.css'
+	import '../app.postcss'
 </script>
 
 <Header />
@@ -10,3 +10,9 @@
 <footer class="absolute bottom-0 mx-auto inset-x-0">
 	<p class="text-center">taco</p>
 </footer>
+
+<style global lang="postcss">
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+</style>
