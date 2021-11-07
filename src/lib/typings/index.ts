@@ -9,8 +9,8 @@ export interface Todo {
 
 export enum List {
 	Inbox = 1,
-	Starred = 2,
-	All = Inbox | Starred
+	Today = 1 << 1,
+	Week = 1 << 2
 }
 
 export interface Todos {

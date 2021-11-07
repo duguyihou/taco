@@ -5,8 +5,8 @@
 
 	const lists = [
 		{ title: 'Inbox', list: List.Inbox },
-		{ title: 'Starred', list: List.Starred },
-		{ title: 'All', list: List.All }
+		{ title: 'Today', list: List.Today },
+		{ title: 'Week', list: List.Week }
 	]
 </script>
 

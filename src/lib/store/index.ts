@@ -1,5 +1,5 @@
 import type { List, Store, Todo } from '$lib/typings'
-import { writable } from 'svelte/store'
+import { get, writable } from 'svelte/store'
 import { fetchTodosUrl } from '$lib/api/todoAPI'
 
 const initialState = { todos: [], loading: false, error: '' }
@@ -35,8 +35,11 @@ export const handleCheck = (payload: Todo): void => {
 	})
 }
 
-export const handleList = (payload: List): void => {
+export const handleList = (payload: List): Todo[] => {
 	console.log(payload)
+	const list = get(store).todos.filter(({ list }) => list === payload)
+	console.log(list.map((todo) => todo.list))
+	return list
 }
 
 const request = async (method: string, url: string, params?: never): Promise<void> => {
