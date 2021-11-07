@@ -1,16 +1,17 @@
 <script lang="ts">
-	import logo from './taco-logo.svg'
+	export let title: string
+	$: value = title.toUpperCase()
 </script>
 
-<header class="flex flex-row justify-between items-center px-6 py-2 bg-blue">
-	<div class="w-8 h-8 rounded-full">
-		<a href="/" class="w-8 h-8 rounded-full">
-			<img class="max-w-full max-h-full object-cover" src={logo} alt="taco" />
-		</a>
-	</div>
-	<div class="w-8 h-8 rounded-full">
-		<a href="/" class="w-8 h-8 rounded-full">
-			<img class="max-w-full max-h-full object-cover" src={logo} alt="taco" />
-		</a>
-	</div>
+<header class="header">
+	<div class="title">{value}</div>
 </header>
+
+<style lang="postcss">
+	.header {
+		@apply w-full flex flex-row justify-start items-center  p-2 bg-blue-light;
+	}
+	.title {
+		@apply w-auto h-8 text-black text-left text-2xl;
+	}
+</style>

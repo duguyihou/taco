@@ -42,13 +42,13 @@
 
 <style lang="postcss">
 	.form {
-		@apply container bg-blue-light border-2 border-blue-light shadow-xl  h-auto text-lg rounded flex flex-row justify-start items-center;
+		@apply container bg-blue border-2 border-blue shadow-xl  h-auto text-lg rounded flex flex-row justify-start items-center;
 	}
 	.icon {
 		@apply w-5 h-5 mx-2 flex justify-center items-center text-grey-light;
 	}
 	.input {
-		@apply flex-1 text-lg p-2 bg-blue-light text-grey-light rounded outline-none focus:bg-grey-light focus:text-black;
+		@apply flex-1 text-lg p-2 bg-blue text-grey-light rounded border-0 outline-none placeholder-grey-light focus:bg-grey-light focus:text-black-light;
 	}
 	.star-wrapper {
 		@apply mr-8 p-2;
