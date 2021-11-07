@@ -1,20 +1,16 @@
 <script lang="ts">
 	import { List } from '$lib/typings'
 	import SidebarHeader from './SidebarHeader.svelte'
-	import { handleList } from '$lib/store'
+	import { update } from '$lib/store'
 
-	const lists = [
-		{ title: 'Inbox', list: List.Inbox },
-		{ title: 'Today', list: List.Today },
-		{ title: 'Week', list: List.Week }
-	]
+	const lists = [List.Inbox, List.Today, List.Week]
 </script>
 
 <section class="sidebar">
 	<SidebarHeader />
 	<ul>
-		{#each lists as { title, list }}
-			<li on:click={() => handleList(list)}>{title}</li>
+		{#each lists as list}
+			<li on:click={() => update(list)}>{list.toUpperCase()}</li>
 		{/each}
 	</ul>
 </section>
@@ -26,7 +22,6 @@
 	ul {
 		@apply w-full h-full text-left text-black-light;
 	}
-
 	li {
 		@apply p-2 cursor-pointer;
 	}

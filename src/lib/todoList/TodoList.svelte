@@ -1,22 +1,28 @@
 <script lang="ts">
 	import Todo from '$lib/todo/Todo.svelte'
-	import store from '$lib/store'
+	import type { Todo as ITodo } from '$lib/typings'
 
-	// $: undos = $store.todos.filter(({ checked }) => !checked)
-	// $: dones = $store.todos.filter(({ checked }) => checked)
+	export let todos: ITodo[]
+	$: undos = todos.filter(({ checked }) => !checked)
+	$: dones = todos.filter(({ checked }) => checked)
 
-	// $: showDones = dones.length
+	$: showDones = dones.length
 </script>
 
-{#each $store.todos as todo}
-	<Todo {todo} />
-{:else}
-	<h1>no todo</h1>
-{/each}
+{#if todos}
+	{#each undos as todo}
+		<Todo {todo} />
+	{/each}
+	{#if showDones}
+		<p>Done</p>
+	{/if}
+	{#each dones as todo}
+		<Todo {todo} />
+	{/each}
+{/if}
 
-<!-- {#if showDones}
-// 	<h1 class="text-white">done</h1>
-// {/if}
-// {#each dones as todo}
-// 	<Todo {todo} />
-// {/each} -->
+<style lang="postcss">
+	p {
+		@apply my-1 text-grey-light text-left  px-3 py-1 rounded-md border-2 border-blue;
+	}
+</style>

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
 	import { store } from '$lib/store'
-	import { List, Todo } from '$lib/typings'
+	import type { Todo } from '$lib/typings'
+	import { List } from '$lib/typings'
+
 	import Star from '$lib/star/Star.svelte'
 	import { v4 as uuid } from '@lukeed/uuid'
 
@@ -18,6 +20,7 @@
 		onSubmit: ({ text, list, starred, checked, selected }) => {
 			if (text !== '') {
 				const newTodo = { id: uuid(), text, list, starred, checked, selected }
+				console.log(list)
 				$store.todos = [newTodo, ...$store.todos]
 				$form.text = ''
 				$form.starred = false
