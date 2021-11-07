@@ -34,7 +34,7 @@
 
 <form class="form" on:submit={handleSubmit}>
 	<label for="newTodo" class="icon">&plus;</label>
-	<input class="input" id="newTodo" bind:value={$form.text} />
+	<input class="input" id="newTodo" placeholder="New to-do" bind:value={$form.text} />
 	<div class="star-wrapper" class:hidden={!showStar}>
 		<Star bind:starred={$form.starred} on:star={() => handleStar()} />
 	</div>
@@ -42,13 +42,13 @@
 
 <style lang="postcss">
 	.form {
-		@apply container bg-grey-light border-2 border-grey-light shadow-sm  h-auto text-lg rounded flex flex-row justify-start items-center;
+		@apply container bg-blue-light border-2 border-blue-light shadow-xl  h-auto text-lg rounded flex flex-row justify-start items-center;
 	}
 	.icon {
-		@apply w-5 h-5 mx-2 flex justify-center items-center;
+		@apply w-5 h-5 mx-2 flex justify-center items-center text-grey-light;
 	}
 	.input {
-		@apply flex-1 text-lg p-2 bg-grey-light rounded outline-none focus:shadow-lg;
+		@apply flex-1 text-lg p-2 bg-blue-light text-grey-light rounded outline-none focus:bg-grey-light focus:text-black;
 	}
 	.star-wrapper {
 		@apply mr-8 p-2;
