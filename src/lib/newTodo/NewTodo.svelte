@@ -48,7 +48,7 @@
 		@apply w-5 h-5 mx-2 flex justify-center items-center text-grey-light;
 	}
 	.input {
-		@apply flex-1 text-lg p-2 bg-blue text-grey-light rounded border-0 outline-none placeholder-grey-light focus:bg-grey-light focus:text-black;
+		@apply flex-1 text-lg p-2 bg-blue text-grey-light rounded border-0 outline-none placeholder-grey-light focus:bg-grey-light focus:text-black-light;
 	}
 	.star-wrapper {
 		@apply mr-8 p-2;

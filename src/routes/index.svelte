@@ -6,6 +6,7 @@
 	import store, { fetchTodos } from '$lib/store'
 	import { onMount } from 'svelte'
 	import Header from '$lib/header/Header.svelte'
+	import Sidebar from '$lib/sidebar/Sidebar.svelte'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 
@@ -15,19 +16,20 @@
 <svelte:head>
 	<title>Home</title>
 </svelte:head>
+
+<Sidebar />
 <section class="main">
 	<Header title="Inbox" />
 	<NewTodo />
 	<TodoList />
 </section>
-
 <div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
 	<Detail {selectedTodo} />
 </div>
 
 <style lang="postcss">
 	.main {
-		@apply container flex flex-col justify-start items-center;
+		@apply flex-1 mx-2 flex flex-col justify-start items-center;
 	}
 	.hidden {
 		display: none;

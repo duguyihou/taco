@@ -13,6 +13,6 @@
 
 <style lang="postcss">
 	.detail {
-		@apply w-80 h-full ml-2 bg-grey-dark border-2 border-grey shadow-2xl flex flex-col justify-start items-center;
+		@apply w-80 h-full bg-grey-dark border-2 border-grey shadow-2xl flex flex-col justify-start items-center;
 	}
 </style>

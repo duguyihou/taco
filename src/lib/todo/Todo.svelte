@@ -24,7 +24,7 @@
 		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
 	}
 	.value {
-		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer;
+		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer text-black-light;
 	}
 	.checked {
 		@apply line-through bg-grey-dark border-2 border-grey-dark;
