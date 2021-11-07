@@ -17,7 +17,7 @@
 	</header>
 	<div class="item">
 		<input class="check" type="checkbox" {checked} on:click={() => handleCheck(selectedTodo)} />
-		<div class="value scroll" contenteditable class:checked>
+		<div class="value" contenteditable class:checked>
 			{text}
 		</div>
 	</div>
@@ -27,19 +27,14 @@
 	.form {
 		@apply container bg-grey-light h-auto p-2 text-lg rounded flex flex-col justify-start items-center shadow-sm hover:bg-grey;
 	}
-
-	.scroll {
-		overflow: scroll;
-		scrollbar-width: none;
-	}
 	header {
 		@apply w-full flex flex-row justify-between items-center;
 	}
 	.check {
-		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
+		@apply w-5 h-5 mx-2 p-2 border-2 cursor-pointer flex justify-center items-center;
 	}
 	.value {
-		@apply w-full h-auto text-lg p-2 rounded outline-none text-left cursor-pointer text-black-light;
+		@apply w-full h-auto text-lg p-2 rounded outline-none text-left cursor-pointer text-black-light overflow-hidden;
 	}
 	.checked {
 		@apply line-through bg-grey-dark border-2 border-grey-dark;
