@@ -5,7 +5,6 @@
 	import { List } from '$lib/typings'
 
 	import { v4 as uuid } from '@lukeed/uuid'
-	import { text } from 'svelte/internal'
 
 	const initialValues = {
 		id: '',
@@ -17,13 +16,11 @@
 	} as Todo
 	const { form, handleSubmit } = createForm({
 		initialValues,
-		onSubmit: ({ text, list, starred, checked, selected }) => {
+		onSubmit: ({ text, ...initialValues }) => {
 			if (text !== '') {
-				const newTodo = { id: uuid(), text, list, starred, checked, selected }
-				console.log(list)
+				const newTodo = { id: uuid(), text, ...initialValues }
 				$store.todos = [newTodo, ...$store.todos]
 				$form.text = ''
-				$form.starred = false
 				$form.id = ''
 			}
 		}
