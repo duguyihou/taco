@@ -32,15 +32,13 @@
 	function handleStar() {
 		$form.starred = !$form.starred
 	}
-	$: showStar = $form.text
+	$: showStar = !$form.text
 </script>
 
 <form class="form" on:submit={handleSubmit}>
 	<label for="newTodo" class="icon">&plus;</label>
 	<input class="input" id="newTodo" placeholder="New to-do" bind:value={$form.text} />
-	<div class="star-wrapper" class:hidden={!showStar}>
-		<Star bind:starred={$form.starred} on:star={() => handleStar()} />
-	</div>
+	<Star show={showStar} bind:starred={$form.starred} />
 </form>
 
 <style lang="postcss">
@@ -51,13 +49,6 @@
 		@apply w-5 h-5 mx-2 flex justify-center items-center text-grey-light;
 	}
 	.input {
-		@apply flex-1 text-lg p-2 bg-blue text-grey-light rounded border-0 outline-none placeholder-grey-light focus:bg-grey-light focus:text-black-light;
-	}
-	.star-wrapper {
-		@apply mr-8 p-2;
-	}
-
-	.hidden {
-		visibility: hidden;
+		@apply flex-1 text-base m-px bg-blue text-grey-light rounded border-0 outline-none placeholder-grey-light focus:bg-grey-light focus:text-black-light;
 	}
 </style>
