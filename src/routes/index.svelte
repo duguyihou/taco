@@ -3,7 +3,7 @@
 	import Detail from '$lib/components/Detail.svelte'
 	import NewTodo from '$lib/components/NewTodo.svelte'
 	import TodoList from '$lib/components/TodoList.svelte'
-	import store, { fetchTodos, update, selectedStore } from '$lib/store'
+	import store, { fetchTodos } from '$lib/store'
 	import { onMount } from 'svelte'
 	import Header from '$lib/components/Header.svelte'
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'
@@ -13,22 +13,19 @@
 
 	onMount(async () => {
 		await fetchTodos
-		update(List.Inbox)
 	})
-	$: console.log($selectedStore)
+	$: console.log($store)
 </script>
 
 <Sidebar />
-{#if $selectedStore}
-	<section class="main">
-		<Header title={$selectedStore.title} />
-		<NewTodo />
-		<TodoList todos={$selectedStore.todos} />
-	</section>
-	<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
-		<Detail {selectedTodo} />
-	</div>
-{/if}
+<section class="main">
+	<Header title="Inbox" />
+	<NewTodo />
+	<TodoList todos={$store.todos} />
+</section>
+<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
+	<Detail {selectedTodo} />
+</div>
 
 <style lang="postcss">
 	.main {

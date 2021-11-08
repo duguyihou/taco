@@ -1,15 +1,16 @@
 <script lang="ts">
 	import starSvg from '../../static/star.svg'
-
+	import { createEventDispatcher } from 'svelte'
 	export let starred = false
 	export let show = false
 
-	function handleStar() {
-		starred = !starred
+	const dispatch = createEventDispatcher()
+	function handleDispatch() {
+		dispatch('star')
 	}
 </script>
 
-<button class="star" class:show class:starred type="button" on:click={() => handleStar()}>
+<button class="star" class:show class:starred type="button" on:click={() => handleDispatch()}>
 	<img class="image" src={starSvg} alt="star" />
 </button>
 

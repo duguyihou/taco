@@ -16,7 +16,6 @@ export const handleStar = (payload: Todo): void => {
 		const idx = state.todos.indexOf(payload)
 		const newTodo = { ...payload, starred: !payload.starred }
 		state.todos.splice(idx, 1, newTodo)
-		update(payload.list)
 		return state
 	})
 }
@@ -49,7 +48,6 @@ export const handleCheck = (payload: Todo): void => {
 		const idx = state.todos.indexOf(payload)
 		const newTodo = { ...payload, checked: !payload.checked }
 		state.todos.splice(idx, 1, newTodo)
-		update(payload.list)
 		console.log(get(selectedStore))
 		return state
 	})
