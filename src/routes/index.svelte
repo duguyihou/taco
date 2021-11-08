@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
+	import { onMount } from 'svelte'
 	import Detail from '$lib/components/Detail.svelte'
 	import NewTodo from '$lib/components/NewTodo.svelte'
 	import TodoList from '$lib/components/TodoList.svelte'
 	import store, { fetchTodos } from '$lib/store'
-	import { onMount } from 'svelte'
 	import Header from '$lib/components/Header.svelte'
-	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 
@@ -16,7 +15,6 @@
 	$: console.log($store)
 </script>
 
-<Sidebar />
 <section>
 	<Header title="Inbox" />
 	<NewTodo />
@@ -28,7 +26,7 @@
 
 <style lang="postcss">
 	section {
-		@apply flex-1 mx-2 flex flex-col justify-start items-center;
+		@apply px-1 bg-blue-light flex-1 flex flex-col justify-start items-center;
 	}
 	.hidden {
 		display: none;
