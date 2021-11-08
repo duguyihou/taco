@@ -7,7 +7,7 @@
 	$: ({ text, starred, checked, list } = selectedTodo)
 </script>
 
-<form class="form" class:checked>
+<form class:checked>
 	<header>
 		<span>{list}</span>
 		<span class="star-wrapper">
@@ -15,16 +15,14 @@
 			<button class="close" on:click={() => cancelSelect()}>&#215;</button>
 		</span>
 	</header>
-	<div class="item">
+	<section class="item">
 		<input class="check" type="checkbox" {checked} on:click={() => handleCheck(selectedTodo)} />
-		<div class="value" contenteditable class:checked>
-			{text}
-		</div>
-	</div>
+		<div class="value" contenteditable class:checked bind:textContent={text} />
+	</section>
 </form>
 
 <style lang="postcss">
-	.form {
+	form {
 		@apply container bg-grey-light h-auto text-lg rounded flex flex-col justify-start items-center shadow-sm hover:bg-grey;
 	}
 	header {
