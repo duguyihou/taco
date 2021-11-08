@@ -1,23 +1,27 @@
 <script lang="ts">
-	import { handleCheck, handleStar, cancelSelect } from '$lib/store'
-	import Star from '$lib/components/Star.svelte'
-	import type { Todo } from '$lib/typings'
+	import { cancelSelect } from '$lib/store'
+	import Star from '$lib/components/todo/Star.svelte'
+	import type { List } from '$lib/typings'
+	import Check from './todo/Check.svelte'
+	import TodoItem from './todo/TodoItem.svelte'
 
-	export let selectedTodo: Todo
-	$: ({ text, starred, checked, list } = selectedTodo)
+	export let checked: boolean
+	export let text: string
+	export let starred: boolean
+	export let list: List
 </script>
 
 <form class:checked>
 	<header>
 		<span>{list}</span>
 		<span class="star-wrapper">
-			<Star {starred} on:star={() => handleStar(selectedTodo)} />
+			<Star bind:starred />
 			<button class="close" on:click={() => cancelSelect()}>&#215;</button>
 		</span>
 	</header>
 	<section class="item">
-		<input class="check" type="checkbox" {checked} on:click={() => handleCheck(selectedTodo)} />
-		<div class="value" contenteditable class:checked bind:textContent={text} />
+		<Check bind:checked />
+		<TodoItem bind:text />
 	</section>
 </form>
 

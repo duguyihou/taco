@@ -1,15 +1,16 @@
 <script lang="ts">
 	import SelectedTodo from '$lib/components/SelectedTodo.svelte'
-	import type { Todo } from '$lib/typings'
+	import type { List } from '$lib/typings'
 
-	export let selectedTodo: Todo
+	export let checked: boolean
+	export let text: string
+	export let starred: boolean
+	export let list: List
 </script>
 
-{#if selectedTodo}
-	<section class="detail">
-		<SelectedTodo {selectedTodo} />
-	</section>
-{/if}
+<section class="detail">
+	<SelectedTodo bind:checked bind:text bind:starred {list} />
+</section>
 
 <style lang="postcss">
 	.detail {
