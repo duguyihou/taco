@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { handleCheck, handleStar, cancelSelect } from '$lib/store'
-	import Star from '$lib/star/Star.svelte'
+	import Star from '$lib/components/Star.svelte'
 	import type { Todo } from '$lib/typings'
 
 	export let selectedTodo: Todo

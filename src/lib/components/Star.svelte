@@ -1,5 +1,5 @@
 <script lang="ts">
-	import starSvg from './star.svg'
+	import starSvg from '../../static/star.svg'
 
 	export let starred = false
 	export let show = false

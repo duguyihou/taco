@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
-	import Detail from '$lib/detail/Detail.svelte'
-	import NewTodo from '$lib/newTodo/NewTodo.svelte'
-	import TodoList from '$lib/todoList/TodoList.svelte'
+	import Detail from '$lib/components/Detail.svelte'
+	import NewTodo from '$lib/components/NewTodo.svelte'
+	import TodoList from '$lib/components/TodoList.svelte'
 	import store, { fetchTodos, update, selectedStore } from '$lib/store'
 	import { onMount } from 'svelte'
-	import Header from '$lib/header/Header.svelte'
-	import Sidebar from '$lib/sidebar/Sidebar.svelte'
+	import Header from '$lib/components/Header.svelte'
+	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'
 	import { List } from '$lib/typings'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)

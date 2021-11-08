@@ -1,25 +1,25 @@
 <script lang="ts">
-	import Star from '$lib/star/Star.svelte'
+	import Star from '$lib/components/Star.svelte'
 	import type { Todo } from '$lib/typings'
-	import { handleStar, handleSelect, handleCheck } from '$lib/store'
+	import { handleSelect, handleCheck } from '$lib/store'
 	export let todo: Todo
 	$: ({ text, starred, checked } = todo)
 </script>
 
-<form class="form" class:checked>
-	<input class="check" type="checkbox" {checked} on:click={() => handleCheck(todo)} />
-	<div class="value" class:checked on:click={() => handleSelect(todo)}>{text}</div>
-	<Star {starred} on:star={() => handleStar(todo)} />
+<form class:checked>
+	<input type="checkbox" {checked} on:click={() => handleCheck(todo)} />
+	<div class:checked on:click={() => handleSelect(todo)}>{text}</div>
+	<Star {starred} />
 </form>
 
 <style lang="postcss">
-	.form {
+	form {
 		@apply container bg-grey-light border-2 border-grey-light  h-auto mt-1 text-lg rounded flex flex-row justify-start items-center;
 	}
-	.check {
+	input {
 		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
 	}
-	.value {
+	div {
 		@apply flex-1 text-base m-px rounded outline-none text-left cursor-pointer text-black-light;
 	}
 	.checked {
