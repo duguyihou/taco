@@ -1,34 +1,31 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
-	import Detail from '$lib/detail/Detail.svelte'
-	import NewTodo from '$lib/newTodo/NewTodo.svelte'
-	import TodoList from '$lib/todoList/TodoList.svelte'
-	import store, { fetchTodos, update, selectedStore } from '$lib/store'
+	import Detail from '$lib/components/Detail.svelte'
+	import NewTodo from '$lib/components/NewTodo.svelte'
+	import TodoList from '$lib/components/TodoList.svelte'
+	import store, { fetchTodos } from '$lib/store'
 	import { onMount } from 'svelte'
-	import Header from '$lib/header/Header.svelte'
-	import Sidebar from '$lib/sidebar/Sidebar.svelte'
+	import Header from '$lib/components/Header.svelte'
+	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'
 	import { List } from '$lib/typings'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 
 	onMount(async () => {
 		await fetchTodos
-		update(List.Inbox)
 	})
-	$: console.log($selectedStore)
+	$: console.log($store)
 </script>
 
 <Sidebar />
-{#if $selectedStore}
-	<section class="main">
-		<Header title={$selectedStore.title} />
-		<NewTodo />
-		<TodoList todos={$selectedStore.todos} />
-	</section>
-	<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
-		<Detail {selectedTodo} />
-	</div>
-{/if}
+<section class="main">
+	<Header title="Inbox" />
+	<NewTodo />
+	<TodoList todos={$store.todos} />
+</section>
+<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
+	<Detail {selectedTodo} />
+</div>
 
 <style lang="postcss">
 	.main {
