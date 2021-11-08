@@ -7,7 +7,6 @@
 	import { onMount } from 'svelte'
 	import Header from '$lib/components/Header.svelte'
 	import Sidebar from '$lib/components/sidebar/Sidebar.svelte'
-	import { List } from '$lib/typings'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 
@@ -18,7 +17,7 @@
 </script>
 
 <Sidebar />
-<section class="main">
+<section>
 	<Header title="Inbox" />
 	<NewTodo />
 	<TodoList todos={$store.todos} />
@@ -28,7 +27,7 @@
 </div>
 
 <style lang="postcss">
-	.main {
+	section {
 		@apply flex-1 mx-2 flex flex-col justify-start items-center;
 	}
 	.hidden {

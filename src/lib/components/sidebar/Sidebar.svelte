@@ -1,28 +1,31 @@
 <script lang="ts">
-	import { List } from '$lib/typings'
 	import SidebarHeader from './SidebarHeader.svelte'
-	import { update } from '$lib/store'
 
-	const lists = [List.Inbox, List.Today, List.Week]
+	const links = [
+		{ title: 'Inbox', href: '/' },
+		{ title: 'Today', href: '/today' },
+		{ title: 'Week', href: '/week' },
+		{ title: 'Done', href: '/done' }
+	]
 </script>
 
-<section class="sidebar">
+<section>
 	<SidebarHeader />
 	<ul>
-		{#each lists as list}
-			<li on:click={() => update(list)}>{list.toString()}</li>
+		{#each links as { title, href }}
+			<a {href}>{title}</a>
 		{/each}
 	</ul>
 </section>
 
 <style lang="postcss">
-	.sidebar {
-		@apply w-60 h-screen bg-grey shadow-2xl flex flex-col justify-start items-center;
+	section {
+		@apply w-60 h-screen bg-grey-light shadow-2xl flex flex-col justify-start items-center;
 	}
 	ul {
-		@apply w-full h-full text-left text-black-light;
+		@apply w-full h-full text-left text-black-light flex flex-col justify-start items-start;
 	}
-	li {
-		@apply p-2 cursor-pointer;
+	a {
+		@apply w-full p-2 text-sm border-b border-blue-light hover:bg-grey-dark;
 	}
 </style>
