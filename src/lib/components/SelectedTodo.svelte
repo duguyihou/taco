@@ -25,7 +25,7 @@
 
 <style lang="postcss">
 	.form {
-		@apply container bg-grey-light h-auto p-2 text-lg rounded flex flex-col justify-start items-center shadow-sm hover:bg-grey;
+		@apply container bg-grey-light h-auto text-lg rounded flex flex-col justify-start items-center shadow-sm hover:bg-grey;
 	}
 	header {
 		@apply w-full flex flex-row justify-between items-center;
