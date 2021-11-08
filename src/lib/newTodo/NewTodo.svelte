@@ -4,7 +4,6 @@
 	import type { Todo } from '$lib/typings'
 	import { List } from '$lib/typings'
 
-	import Star from '$lib/star/Star.svelte'
 	import { v4 as uuid } from '@lukeed/uuid'
 
 	const initialValues = {
@@ -17,47 +16,39 @@
 	} as Todo
 	const { form, handleSubmit } = createForm({
 		initialValues,
-		onSubmit: ({ text, list, starred, checked, selected }) => {
+		onSubmit: ({ text, ...initialValues }) => {
 			if (text !== '') {
-				const newTodo = { id: uuid(), text, list, starred, checked, selected }
-				console.log(list)
+				const newTodo = { id: uuid(), text, ...initialValues }
 				$store.todos = [newTodo, ...$store.todos]
 				$form.text = ''
-				$form.starred = false
 				$form.id = ''
 			}
 		}
 	})
-
-	function handleStar() {
-		$form.starred = !$form.starred
-	}
-	$: showStar = $form.text
+	$: console.log($form.text)
 </script>
 
-<form class="form" on:submit={handleSubmit}>
-	<label for="newTodo" class="icon">&plus;</label>
-	<input class="input" id="newTodo" placeholder="New to-do" bind:value={$form.text} />
-	<div class="star-wrapper" class:hidden={!showStar}>
-		<Star bind:starred={$form.starred} on:star={() => handleStar()} />
-	</div>
+<form>
+	<div contenteditable bind:textContent={$form.text} />
+	<button class:show={!$form.text} on:click={handleSubmit}>create</button>
 </form>
 
 <style lang="postcss">
-	.form {
-		@apply container bg-blue border-2 border-blue shadow-xl  h-auto text-lg rounded flex flex-row justify-start items-center;
+	form {
+		@apply container overflow-hidden w-full bg-blue border-0 shadow-xl  h-auto rounded flex flex-row justify-start items-start;
 	}
-	.icon {
-		@apply w-5 h-5 mx-2 flex justify-center items-center text-grey-light;
+	div {
+		@apply w-full pl-6 m-px text-base rounded overflow-hidden bg-blue text-grey-light cursor-pointer focus:bg-grey-light focus:text-black-light focus:border-grey-light border-0 outline-none;
 	}
-	.input {
-		@apply flex-1 text-lg p-2 bg-blue text-grey-light rounded border-0 outline-none placeholder-grey-light focus:bg-grey-light focus:text-black-light;
+	div:before {
+		content: '+';
+		position: relative;
+		left: -16px;
 	}
-	.star-wrapper {
-		@apply mr-8 p-2;
+	button {
+		@apply bg-blue text-grey-light mt-px mb-px px-0.5 rounded;
 	}
-
-	.hidden {
+	.show {
 		visibility: hidden;
 	}
 </style>

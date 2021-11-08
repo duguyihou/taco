@@ -8,12 +8,8 @@
 
 <form class="form" class:checked>
 	<input class="check" type="checkbox" {checked} on:click={() => handleCheck(todo)} />
-	<button type="button" class="value" class:checked on:click={() => handleSelect(todo)}
-		>{text}</button
-	>
-	<div class="star-wrapper">
-		<Star {starred} on:star={() => handleStar(todo)} />
-	</div>
+	<div class="value" class:checked on:click={() => handleSelect(todo)}>{text}</div>
+	<Star {starred} on:star={() => handleStar(todo)} />
 </form>
 
 <style lang="postcss">
@@ -24,12 +20,9 @@
 		@apply w-5 h-5 mx-2 border-2 cursor-pointer flex justify-center items-center;
 	}
 	.value {
-		@apply flex-1 text-lg p-2 rounded outline-none text-left cursor-pointer text-black-light;
+		@apply flex-1 text-base m-px rounded outline-none text-left cursor-pointer text-black-light;
 	}
 	.checked {
 		@apply line-through bg-grey-dark border-2 border-grey-dark;
-	}
-	.star-wrapper {
-		@apply mr-8 p-2;
 	}
 </style>
