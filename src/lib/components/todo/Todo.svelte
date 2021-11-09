@@ -2,8 +2,8 @@
 	import Star from '$lib/components/todo/Star.svelte'
 	import { handleCheck, handleSelect, handleStar } from '$lib/store'
 	import type { Todo } from '$lib/typings'
-	import Check from './todo/Check.svelte'
-	import TodoItem from './todo/TodoItem.svelte'
+	import Check from './Check.svelte'
+	import TodoItem from './TodoItem.svelte'
 	export let todo: Todo
 	export let checked: boolean
 	$: ({ text, starred } = todo)

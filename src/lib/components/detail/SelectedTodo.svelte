@@ -2,8 +2,8 @@
 	import { cancelSelect, handleCheck, handleStar } from '$lib/store'
 	import Star from '$lib/components/todo/Star.svelte'
 	import type { Todo } from '$lib/typings'
-	import Check from './todo/Check.svelte'
-	import SelectedTodoItem from './todo/SelectedTodoItem.svelte'
+	import Check from '../todo/Check.svelte'
+	import SelectedTodoItem from './SelectedTodoItem.svelte'
 
 	export let selectedTodo: Todo
 	export let text: string

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Todo from '$lib/components/Todo.svelte'
+	import Todo from '$lib/components/todo/Todo.svelte'
 	import type { Todo as ITodo } from '$lib/typings'
 
 	export let todos: ITodo[]

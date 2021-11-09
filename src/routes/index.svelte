@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition'
 	import { onMount } from 'svelte'
-	import Detail from '$lib/components/Detail.svelte'
 	import NewTodo from '$lib/components/NewTodo.svelte'
 	import TodoList from '$lib/components/TodoList.svelte'
 	import store, { fetchTodos } from '$lib/store'
 	import Header from '$lib/components/Header.svelte'
+	import SelectedTodo from '$lib/components/detail/SelectedTodo.svelte'
 
 	$: selectedTodo = $store.todos.find(({ selected }) => selected)
 
@@ -21,7 +21,7 @@
 </section>
 {#if selectedTodo}
 	<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
-		<Detail {selectedTodo} />
+		<SelectedTodo {selectedTodo} text={selectedTodo.text} />
 	</div>
 {/if}
 
