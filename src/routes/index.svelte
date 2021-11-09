@@ -12,7 +12,6 @@
 	onMount(async () => {
 		await fetchTodos
 	})
-	$: console.log($store)
 </script>
 
 <section>
@@ -20,9 +19,11 @@
 	<NewTodo />
 	<TodoList todos={$store.todos} />
 </section>
-<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
-	<Detail {selectedTodo} />
-</div>
+{#if selectedTodo}
+	<div class:hidden={!selectedTodo} transition:fly={{ duration: 500, x: 300 }}>
+		<Detail {selectedTodo} />
+	</div>
+{/if}
 
 <style lang="postcss">
 	section {

@@ -5,11 +5,11 @@
 	export let selectedTodo: Todo
 </script>
 
-{#if selectedTodo}
-	<section class="detail">
-		<SelectedTodo {selectedTodo} />
-	</section>
-{/if}
+<section class="detail">
+	{#if selectedTodo}
+		<SelectedTodo {selectedTodo} text={selectedTodo.text} />
+	{/if}
+</section>
 
 <style lang="postcss">
 	.detail {

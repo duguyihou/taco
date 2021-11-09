@@ -1,5 +1,5 @@
 <script lang="ts">
-	import starSvg from '../../static/star.svg'
+	import starSvg from '../../../static/star.svg'
 	import { createEventDispatcher } from 'svelte'
 	export let starred = false
 	export let show = false
