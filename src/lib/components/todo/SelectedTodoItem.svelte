@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
+	import { selectedTodo, updateTodoItem } from '$lib/store'
 
 	export let text: string
 	export let checked: boolean
-	const dispatch = createEventDispatcher()
-	function handleDispatch() {
-		dispatch('select')
-	}
+
+	$: if (text !== $selectedTodo.text) updateTodoItem({ text: text, id: $selectedTodo.id })
 </script>
 
-<div class:checked on:click={() => handleDispatch()}>{text}</div>
+<div class:checked contenteditable bind:textContent={text} />
 
 <style lang="postcss">
 	div {

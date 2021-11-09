@@ -1,12 +1,21 @@
-import type { Store, Todo, List } from '$lib/typings'
-import { derived, get, writable } from 'svelte/store'
+import type { Store, Todo } from '$lib/typings'
+import { List } from '$lib/typings'
+
+import { get, writable } from 'svelte/store'
 import { fetchTodosUrl } from '$lib/api/todoAPI'
 
 const initialState = { todos: [], loading: false, error: '' }
 export const store = writable<Store>(initialState)
-const initialSelectedState = { todos: [], title: '' }
-export const selectedStore = writable<{ title: string; todos: Todo[] }>(initialSelectedState)
 
+const initialSelectedTodoState = {
+	id: '',
+	text: '',
+	list: List.Inbox,
+	starred: false,
+	checked: false,
+	selected: true
+} as Todo
+export const selectedTodo = writable<Todo>(initialSelectedTodoState)
 /**
  * handle star
  * @param payload todo which star
@@ -18,6 +27,7 @@ export const handleStar = (payload: Todo): void => {
 		state.todos.splice(idx, 1, newTodo)
 		return state
 	})
+	console.log(get(store))
 }
 
 export const cancelSelect = (): void => {
@@ -38,6 +48,11 @@ export const handleSelect = (payload: Todo): void => {
 		state.todos.splice(idx, 1, newTodo)
 		return state
 	})
+	selectedTodo.update((state) => {
+		const newTodo = { ...payload, selected: !payload.selected }
+		state = newTodo
+		return state
+	})
 }
 /**
  * handle check
@@ -48,23 +63,27 @@ export const handleCheck = (payload: Todo): void => {
 		const idx = state.todos.indexOf(payload)
 		const newTodo = { ...payload, checked: !payload.checked }
 		state.todos.splice(idx, 1, newTodo)
-		console.log(get(selectedStore))
+		console.log(get(store))
+		return state
+	})
+}
+export const updateTodoItem = (payload: { text: string; id: string }): void => {
+	const { text, id } = payload
+	const selectedTodo = get(store).todos.find((todo) => todo.id === id)
+	store.update((state) => {
+		const idx = state.todos.indexOf(selectedTodo)
+		const newTodo = { ...selectedTodo, text: text }
+		state.todos.splice(idx, 1, newTodo)
 		return state
 	})
 }
 /**
- * update todo list
+ * update document title
  * @param payload the list which need update
  */
 export const update = (payload?: List): void => {
-	const todos = derived(store, (store) => store.todos.filter(({ list }) => list === payload))
 	const title = `${payload.toString().charAt(0).toUpperCase()}${payload.toString().slice(1)}`
 	document.title = `${title} | Taco`
-	selectedStore.update((state) => {
-		state.title = title
-		state.todos = get(todos)
-		return state
-	})
 }
 /**
  * request todos

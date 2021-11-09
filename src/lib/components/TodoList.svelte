@@ -11,13 +11,13 @@
 
 {#if todos}
 	{#each undos as todo}
-		<Todo {todo} />
+		<Todo {todo} checked={todo.checked} />
 	{/each}
 	{#if showDones}
 		<p>Done</p>
 	{/if}
 	{#each dones as todo}
-		<Todo {todo} />
+		<Todo {todo} checked={todo.checked} />
 	{/each}
 {/if}
 
