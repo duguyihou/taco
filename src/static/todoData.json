@@ -30,7 +30,7 @@
 			"list": "Inbox",
 			"starred": false,
 			"checked": false,
-			"selected": true
+			"selected": false
 		}
 	],
 	"loading": false,
