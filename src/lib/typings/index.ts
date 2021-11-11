@@ -1,25 +1,20 @@
-export interface Todo {
+export interface Task {
 	id: string
-	text: string
-	list: List
+	content: string
+	description: string
+	completed: boolean
+	order: number
 	starred: boolean
-	checked: boolean
-	selected: boolean
-	due?: string
+	priority: number
+	project_id: number
+	due: string
+	url: string
 }
 
-export enum List {
-	Inbox = 'Inbox',
-	Today = 'Today',
-	Week = 'Week'
-}
-
-export interface Todos {
-	todos: Todo[]
-}
-
-export interface Store {
-	todos: Todo[]
-	loading: boolean
-	error: string
+export interface Due {
+	date: string
+	datetime: string
+	recurring: boolean
+	string: string
+	timezone: string
 }

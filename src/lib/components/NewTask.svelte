@@ -1,36 +1,37 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
-	import { store } from '$lib/store'
-	import type { Todo } from '$lib/typings'
-	import { List } from '$lib/typings'
+	import type { Task } from '$lib/typings'
 
 	import { v4 as uuid } from '@lukeed/uuid'
 
 	const initialValues = {
 		id: '',
-		text: '',
-		list: List.Inbox,
+		content: '',
+		description: '',
+		completed: false,
+		order: 0,
 		starred: false,
-		checked: false,
-		selected: false
-	} as Todo
+		priority: 1,
+		project_id: 0,
+		due: '',
+		url: ''
+	} as Task
 	const { form, handleSubmit } = createForm({
 		initialValues,
-		onSubmit: ({ text, ...initialValues }) => {
-			if (text !== '') {
-				const newTodo = { id: uuid(), text, ...initialValues }
-				$store.todos = [newTodo, ...$store.todos]
-				$form.text = ''
+		onSubmit: ({ content, ...initialValues }) => {
+			if (content !== '') {
+				const newTodo = { id: uuid(), content, ...initialValues }
+				$form.content = ''
 				$form.id = ''
 			}
 		}
 	})
-	$: console.log($form.text)
+	$: console.log($form.content)
 </script>
 
 <form>
-	<div contenteditable bind:textContent={$form.text} />
-	<button class:show={!$form.text} on:click={handleSubmit}>create</button>
+	<div contenteditable bind:textContent={$form.content} />
+	<button class:show={!$form.content} on:click={handleSubmit}>create</button>
 </form>
 
 <style lang="postcss">

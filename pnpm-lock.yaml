@@ -11,6 +11,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^4.33.0
   '@typescript-eslint/parser': ^4.33.0
   autoprefixer: ^10.4.0
+  axios: ^0.24.0
   cookie: ^0.4.1
   eslint: ^7.32.0
   eslint-config-prettier: ^8.3.0
@@ -33,6 +34,7 @@ specifiers:
 
 dependencies:
   '@lukeed/uuid': 2.0.0
+  axios: 0.24.0
   cookie: 0.4.1
 
 devDependencies:
@@ -4647,6 +4649,17 @@ packages:
       postcss-value-parser: 4.1.0
     dev: true
 
+  /axios/0.24.0:
+    resolution:
+      {
+        integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==
+      }
+    dependencies:
+      follow-redirects: 1.14.5_debug@4.3.2
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /babel-plugin-dynamic-import-node/2.3.3:
     resolution:
       {
@@ -7744,7 +7757,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.2
-    dev: true
 
   /for-in/1.0.2:
     resolution: { integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA= }
