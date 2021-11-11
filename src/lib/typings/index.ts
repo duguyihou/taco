@@ -1,3 +1,7 @@
+export interface NewTask {
+	content: string
+	project_id?: number
+}
 export interface Task {
 	id: string
 	content: string
