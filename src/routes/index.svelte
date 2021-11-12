@@ -4,6 +4,8 @@
 	import Header from '$lib/components/Header.svelte'
 	import { onMount } from 'svelte'
 	import { fetchAllTasks } from '$lib/store/tasks'
+	import SelectedTask from '$lib/components/SelectedTask.svelte'
+	import { selectedTask } from '$lib/store/selectedTask'
 	onMount(async () => {
 		await fetchAllTasks()
 	})
@@ -14,6 +16,9 @@
 	<NewTask />
 	<Project />
 </section>
+{#if $selectedTask}
+	<SelectedTask task={$selectedTask} />
+{/if}
 
 <style lang="postcss">
 	section {
