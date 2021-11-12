@@ -3,7 +3,7 @@ export interface NewTask {
 	project_id?: number
 }
 export interface Task {
-	id: string
+	id: number
 	content: string
 	description: string
 	completed: boolean

@@ -1,14 +1,16 @@
 <script lang="ts">
+	import { getOneBy } from '$lib/api/taskAPI'
+
 	import type { Task } from '$lib/typings'
 	import starSvg from '../../static/star.svg'
 
 	export let task: Task
 	export let completed: boolean
 	let show = false
-	$: ({ content, priority } = task)
+	$: ({ content, priority, id } = task)
 </script>
 
-<form class:completed>
+<form class:completed on:click={() => getOneBy(id)}>
 	<input type="checkbox" bind:checked={completed} />
 	<div class:completed>{content}</div>
 	<button class="star" class:show class:starred={priority} type="button">
