@@ -7,12 +7,16 @@ const axiosAPI = axios.create({
 })
 
 // implement a method to execute all the request from here.
-const apiRequest = (method, url, request) => {
+const apiRequest = async (
+	method: 'get' | 'post' | 'put' | 'delete' | 'patch',
+	url: string,
+	request?: unknown
+) => {
 	const headers = {
 		authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`
 	}
 	//using the axios instance to perform the request that received from each http method
-	return axiosAPI({
+	return await axiosAPI({
 		method,
 		url,
 		data: request,
