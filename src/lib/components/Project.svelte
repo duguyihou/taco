@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { tasks } from '$lib/store/tasks'
+	import Task from './Task.svelte'
 </script>
 
-<style lang="postcss">
-	p {
-		@apply my-1 text-grey-light text-left  px-3 py-1 rounded-md border-2 border-blue;
-	}
-</style>
+{#each $tasks as task}
+	<Task {task} completed={task.completed} />
+{/each}

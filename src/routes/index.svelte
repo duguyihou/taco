@@ -2,6 +2,11 @@
 	import NewTask from '$lib/components/NewTask.svelte'
 	import Project from '$lib/components/Project.svelte'
 	import Header from '$lib/components/Header.svelte'
+	import { onMount } from 'svelte'
+	import { fetchAllTasks } from '$lib/store/tasks'
+	onMount(async () => {
+		await fetchAllTasks()
+	})
 </script>
 
 <section>

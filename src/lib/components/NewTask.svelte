@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
 	import type { NewTask } from '$lib/typings'
-	import { add } from '$lib/api/taskAPI'
+	import { updateTasksBy } from '$lib/store/tasks'
 
 	const initialValues = {
 		content: ''
@@ -11,8 +11,7 @@
 		onSubmit: async ({ content }) => {
 			if (content !== '') {
 				const newTask = { content }
-				const response = await add(newTask)
-				console.log(response)
+				await updateTasksBy(newTask)
 				$form.content = ''
 			}
 		}
