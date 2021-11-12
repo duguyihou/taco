@@ -27,7 +27,7 @@ const apiRequest = (method, url, request) => {
 }
 
 // function to execute the http get request
-const get = (url: string, request: unknown): Promise<Response> => apiRequest('get', url, request)
+const get = (url: string, request?: unknown): Promise<Response> => apiRequest('get', url, request)
 
 // function to execute the http delete request
 const deleteRequest = (url: string, request: unknown): Promise<Response> =>

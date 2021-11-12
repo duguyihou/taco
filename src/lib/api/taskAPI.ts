@@ -9,3 +9,12 @@ export const add = async (payload: NewTask): Promise<Task> => {
 		console.error(error)
 	}
 }
+
+export const getAll = async (): Promise<Task[]> => {
+	try {
+		const tasks = (await api.get('/tasks')) as unknown as Task[]
+		return tasks.reverse()
+	} catch (error) {
+		console.error(error)
+	}
+}
