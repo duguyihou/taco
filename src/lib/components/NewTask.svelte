@@ -1,32 +1,22 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
-	import type { Task } from '$lib/typings'
-
-	import { v4 as uuid } from '@lukeed/uuid'
+	import type { NewTask } from '$lib/typings'
+	import { add } from '$lib/api/taskAPI'
 
 	const initialValues = {
-		id: '',
-		content: '',
-		description: '',
-		completed: false,
-		order: 0,
-		starred: false,
-		priority: 1,
-		project_id: 0,
-		due: '',
-		url: ''
-	} as Task
+		content: ''
+	} as NewTask
 	const { form, handleSubmit } = createForm({
 		initialValues,
-		onSubmit: ({ content, ...initialValues }) => {
+		onSubmit: async ({ content }) => {
 			if (content !== '') {
-				const newTodo = { id: uuid(), content, ...initialValues }
+				const newTask = { content }
+				const response = await add(newTask)
+				console.log(response)
 				$form.content = ''
-				$form.id = ''
 			}
 		}
 	})
-	$: console.log($form.content)
 </script>
 
 <form>
