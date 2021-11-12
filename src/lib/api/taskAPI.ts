@@ -18,3 +18,13 @@ export const getAll = async (): Promise<Task[]> => {
 		console.error(error)
 	}
 }
+
+export const getOneBy = async (payload: number): Promise<Task> => {
+	try {
+		const task = (await api.get(`/tasks/${payload}`)) as unknown as Task
+		console.log(task)
+		return task
+	} catch (error) {
+		console.error(error)
+	}
+}
