@@ -28,7 +28,7 @@
 		@apply container overflow-hidden w-full px-2 bg-blue border-0 shadow-xl  h-auto rounded flex flex-row justify-start items-start;
 	}
 	div {
-		@apply w-full pl-6 m-px text-base rounded overflow-hidden bg-blue text-grey-light cursor-pointer focus:bg-grey-light focus:text-black-light focus:border-grey-light border-0 outline-none;
+		@apply w-full pl-6 py-1 m-px text-base rounded overflow-hidden bg-blue text-grey-light cursor-pointer focus:bg-grey-light focus:text-black-light focus:border-grey-light border-0 outline-none;
 	}
 	div:before {
 		content: '+';
@@ -36,7 +36,7 @@
 		left: -16px;
 	}
 	button {
-		@apply bg-blue text-grey-light mt-px mb-px px-0.5 rounded;
+		@apply bg-blue text-grey-light mt-px mb-px px-0.5 py-1 rounded;
 	}
 	.show {
 		visibility: hidden;
