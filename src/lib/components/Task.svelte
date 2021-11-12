@@ -5,7 +5,6 @@
 
 	export let task: Task
 	export let completed: boolean
-	let show = false
 	$: ({ content, priority, id } = task)
 </script>
 
