@@ -11,7 +11,7 @@ export interface Task {
 	starred: boolean
 	priority: number
 	project_id: number
-	due: string
+	due: Due
 	url: string
 }
 
@@ -20,5 +20,5 @@ export interface Due {
 	datetime: string
 	recurring: boolean
 	string: string
-	timezone: string
+	timezone?: string
 }

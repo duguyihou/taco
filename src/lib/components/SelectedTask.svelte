@@ -1,22 +1,31 @@
 <script lang="ts">
 	import { selectedTask } from '$lib/store/selectedTask'
-	$: ({ priority, content } = $selectedTask)
+	$: ({ priority, content, due, description } = $selectedTask)
 </script>
 
 <form>
-	<section class="todo">
+	<section>
 		<input type="checkbox" />
 		<div class="content" contenteditable bind:textContent={content} />
 		<span>{`p-${priority}`}</span>
+	</section>
+	<section>
+		<label>
+			Due:
+			<input type="date" value={due.date} />
+		</label>
+	</section>
+	<section>
+		<div contenteditable bind:textContent={description} />
 	</section>
 </form>
 
 <style lang="postcss">
 	form {
-		@apply container bg-grey-light w-full h-full p-2 border-none text-base flex flex-col justify-start items-center;
+		@apply container bg-grey-light w-full h-screen p-2 border-none text-base flex flex-col justify-start items-center;
 	}
-	.todo {
-		@apply w-full flex flex-row justify-between items-center;
+	section {
+		@apply w-full py-2 flex flex-row justify-between items-center;
 	}
 	.content {
 		@apply flex-1;
