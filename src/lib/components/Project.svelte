@@ -4,5 +4,5 @@
 </script>
 
 {#each $tasks as task}
-	<Task {task} completed={task.completed} />
+	<Task {task} />
 {/each}

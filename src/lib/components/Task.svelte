@@ -1,17 +1,24 @@
 <script lang="ts">
-	import { selectTaskBy } from '$lib/store/selectedTask'
+	import { selectTaskBy, updateTask } from '$lib/store/selectedTask'
+	import { createForm } from 'svelte-forms-lib'
 
 	import type { Task } from '$lib/typings'
 
 	export let task: Task
-	export let completed: boolean
-	$: ({ content, priority, id } = task)
+	const { form, handleSubmit } = createForm({
+		initialValues: task,
+		onSubmit: async (initialValues) => {
+			const { id } = initialValues
+			await updateTask(id, initialValues)
+			console.log(initialValues)
+		}
+	})
 </script>
 
 <form>
-	<input type="checkbox" bind:checked={completed} />
-	<div on:click={() => selectTaskBy(id)}>{content}</div>
-	<span>{`p-${priority}`}</span>
+	<input type="checkbox" bind:checked={$form.completed} on:change={handleSubmit} />
+	<div on:click={() => selectTaskBy($form.id)}>{$form.content}</div>
+	<span>{`p-${$form.priority}`}</span>
 </form>
 
 <style lang="postcss">

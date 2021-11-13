@@ -38,7 +38,7 @@ const deleteRequest = (url: string, request: unknown): Promise<Response> =>
 	apiRequest('delete', url, request)
 
 // function to execute the http post request
-const post = (url: string, request: unknown): Promise<Task> => apiRequest('post', url, request)
+const post = (url: string, request?: unknown): Promise<Task> => apiRequest('post', url, request)
 
 // function to execute the http put request
 const put = (url: string, request: unknown): Promise<Response> => apiRequest('put', url, request)

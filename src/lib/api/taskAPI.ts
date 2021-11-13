@@ -28,3 +28,19 @@ export const getOneBy = async (payload: number): Promise<Task> => {
 		console.error(error)
 	}
 }
+
+export const close = async (id: number): Promise<void> => {
+	try {
+		await api.post(`/tasks/${id}/close`)
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+export const update = async (id: number, payload: unknown): Promise<void> => {
+	try {
+		await api.post(`/tasks/${id}`, payload)
+	} catch (error) {
+		console.error(error)
+	}
+}
