@@ -26,7 +26,7 @@
 
 <style lang="postcss">
 	section {
-		@apply px-1 bg-blue-light flex-1 flex flex-col justify-start items-center;
+		@apply px-4 bg-blue-light flex-1 flex flex-col justify-start items-center;
 	}
 	.selected-task {
 		@apply w-1/5 h-full;
