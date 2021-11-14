@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { selectedTask } from '$lib/store/selectedTask'
+	import Star from './Star.svelte'
+
 	import Fa from 'svelte-fa'
 	import {
-		faStar,
 		faAngleRight,
 		faCalendarAlt,
 		faPen,
@@ -16,15 +17,13 @@
 	<section class="task">
 		<input type="checkbox" class="checkbox" />
 		<div class="content" contenteditable bind:textContent={content} />
-		<div class="icon" class:starred={priority > 1}>
-			<Fa icon={faStar} size="sm" />
-		</div>
+		<Star {priority} />
 	</section>
 	<section class="due">
 		<div class="icon">
 			<Fa icon={faCalendarAlt} size="sm" />
 		</div>
-		<input type="date" value={$selectedTask.due ? $selectedTask.due.date : ''} />
+		<input class="w-full" type="date" value={$selectedTask.due ? $selectedTask.due.date : ''} />
 	</section>
 	<section class="sub">
 		<div class="icon">

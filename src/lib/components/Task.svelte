@@ -3,8 +3,7 @@
 	import { createForm } from 'svelte-forms-lib'
 
 	import type { Task } from '$lib/typings'
-	import Fa from 'svelte-fa'
-	import { faStar } from '@fortawesome/free-solid-svg-icons'
+	import Star from './Star.svelte'
 
 	export let task: Task
 	const { form } = createForm({
@@ -27,9 +26,7 @@
 		on:change={() => handleCheck($form.completed)}
 	/>
 	<div class="content" on:click={() => selectTaskBy($form.id)}>{$form.content}</div>
-	<div class="icon">
-		<Fa icon={faStar} size="sm" />
-	</div>
+	<Star priority={$form.priority} />
 </form>
 
 <style lang="postcss">
@@ -41,8 +38,5 @@
 	}
 	.content {
 		@apply flex-1 cursor-pointer;
-	}
-	.icon {
-		@apply mx-2 flex justify-center items-center text-blue;
 	}
 </style>
