@@ -1,10 +1,17 @@
 <script lang="ts">
+	import Fa from 'svelte-fa/src/fa.svelte'
+	import {
+		faInbox,
+		faCalendarDay,
+		faCalendarWeek,
+		faCheckSquare
+	} from '@fortawesome/free-solid-svg-icons'
 	import '../app.postcss'
 	const links = [
-		{ title: 'Inbox', href: '/' },
-		{ title: 'Today', href: '/today' },
-		{ title: 'Week', href: '/week' },
-		{ title: 'Done', href: '/done' }
+		{ title: 'Inbox', href: '/', icon: faInbox },
+		{ title: 'Today', href: '/today', icon: faCalendarDay },
+		{ title: 'Week', href: '/week', icon: faCalendarWeek },
+		{ title: 'Done', href: '/done', icon: faCheckSquare }
 	]
 </script>
 
@@ -14,8 +21,11 @@
 			<header class="name">Kong</header>
 		</nav>
 		<ul class="ul">
-			{#each links as { title, href }}
-				<a class="link" {href}>{title}</a>
+			{#each links as { title, href, icon }}
+				<li class="li">
+					<Fa {icon} size="sm" />
+					<a class="link" {href}>{title}</a>
+				</li>
 			{/each}
 		</ul>
 	</aside>
@@ -39,7 +49,10 @@
 	.ul {
 		@apply w-full h-full text-left text-black-light flex flex-col justify-start items-start;
 	}
+	.li {
+		@apply w-full pl-4 text-blue-dark flex flex-row justify-start items-center hover:bg-grey-dark;
+	}
 	.link {
-		@apply w-full p-2 text-sm border-b border-blue-light hover:bg-grey-dark;
+		@apply flex-1 p-2 text-sm;
 	}
 </style>

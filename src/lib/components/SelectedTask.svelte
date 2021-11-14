@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { selectedTask } from '$lib/store/selectedTask'
+	import Fa from 'svelte-fa/src/fa.svelte'
+	import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 	$: ({ priority, content, description } = $selectedTask)
 </script>
 
@@ -11,7 +13,9 @@
 	</section>
 	<section>
 		<label>
-			Due:
+			<div class="mx-2">
+				<Fa icon={faCalendarAlt} size="sm" />
+			</div>
 			<input type="date" value={$selectedTask.due ? $selectedTask.due.date : ''} />
 		</label>
 	</section>
