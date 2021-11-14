@@ -3,6 +3,6 @@
 	import Task from './Task.svelte'
 </script>
 
-{#each $tasks as task}
+{#each $tasks as task (task.id)}
 	<Task {task} />
 {/each}

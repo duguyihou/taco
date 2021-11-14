@@ -1,46 +1,21 @@
 import type { NewTask, Task } from '$lib/typings'
-import api from '$lib/utils/api'
+import request from '$lib/utils/request'
+import type { AxiosResponse } from 'axios'
 
-export const add = async (payload: NewTask): Promise<Task> => {
-	try {
-		const task = await api.post('/tasks', payload)
-		return task
-	} catch (error) {
-		console.error(error)
-	}
-}
+export const add = (data: NewTask): Promise<AxiosResponse<Task, unknown>> =>
+	request({ method: 'POST', url: '/tasks', data })
 
-export const getAll = async (): Promise<Task[]> => {
-	try {
-		const tasks = (await api.get('/tasks')) as unknown as Task[]
-		return tasks.reverse()
-	} catch (error) {
-		console.error(error)
-	}
-}
+export const getAll = (): Promise<AxiosResponse<Task[], unknown>> =>
+	request({ method: 'GET', url: '/tasks' })
 
-export const getOneBy = async (payload: number): Promise<Task> => {
-	try {
-		const task = (await api.get(`/tasks/${payload}`)) as unknown as Task
-		console.log(task)
-		return task
-	} catch (error) {
-		console.error(error)
-	}
-}
+export const getOneBy = (id: number): Promise<AxiosResponse<Task, unknown>> =>
+	request({ method: 'GET', url: `/tasks/${id}` })
 
-export const close = async (id: number): Promise<void> => {
-	try {
-		await api.post(`/tasks/${id}/close`)
-	} catch (error) {
-		console.error(error)
-	}
-}
+export const close = (id: number): Promise<AxiosResponse<unknown, unknown>> =>
+	request({ method: 'POST', url: `/tasks/${id}/close` })
 
-export const update = async (id: number, payload: unknown): Promise<void> => {
-	try {
-		await api.post(`/tasks/${id}`, payload)
-	} catch (error) {
-		console.error(error)
-	}
-}
+export const reopen = (id: number): Promise<AxiosResponse<unknown, unknown>> =>
+	request({ method: 'POST', url: `/tasks/${id}/reopen` })
+
+export const update = (id: number, data: Task): Promise<AxiosResponse<unknown, unknown>> =>
+	request({ method: 'POST', url: `/taks/${id}`, data })
