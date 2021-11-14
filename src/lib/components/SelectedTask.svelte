@@ -72,9 +72,6 @@
 	.note {
 		@apply w-full py-2 flex flex-row justify-start items-start;
 	}
-	.starred {
-		@apply text-red;
-	}
 
 	footer {
 		@apply absolute bottom-0 w-full border-t border-blue-light flex justify-between p-2;
