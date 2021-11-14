@@ -3,7 +3,7 @@
 	import Star from './Star.svelte'
 
 	import Fa from 'svelte-fa'
-	import { faAngleRight, faCalendarAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
+	import { faAngleRight, faTrash } from '@fortawesome/free-solid-svg-icons'
 	import Note from './Note.svelte'
 	import SubTask from './SubTask.svelte'
 	import Due from './Due.svelte'
