@@ -1,11 +1,18 @@
 <script lang="ts">
-	import { closeTask, reopenTask, selectTaskBy, updateTask } from '$lib/store/selectedTask'
+	import {
+		closeTask,
+		reopenTask,
+		selectedTask,
+		selectTaskBy,
+		updateTask
+	} from '$lib/store/selectedTask'
 	import { createForm } from 'svelte-forms-lib'
 
 	import type { Task } from '$lib/typings'
 	import Star from './Star.svelte'
 
 	export let task: Task
+
 	const { form } = createForm({
 		initialValues: task,
 		onSubmit: async (initialValues) => {
@@ -33,6 +40,7 @@
 	form {
 		@apply container bg-grey-light w-full h-auto px-2 py-1 border-none mt-1 text-base rounded flex flex-row justify-start items-center;
 	}
+
 	input {
 		@apply w-4 h-4 mx-2;
 	}

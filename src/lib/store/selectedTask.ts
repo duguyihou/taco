@@ -5,7 +5,7 @@ import { tasks } from './tasks'
 
 export const selectedTask = writable<Task | null>(null)
 
-export async function selectTaskBy(payload: number): Promise<void> {
+export async function getTaskBy(payload: number): Promise<void> {
 	try {
 		if (!get(selectedTask) || get(selectedTask).id !== payload) {
 			const response = await getOneBy(payload)
@@ -17,6 +17,13 @@ export async function selectTaskBy(payload: number): Promise<void> {
 	}
 }
 
+export function selectTaskBy(payload: number): void {
+	if (get(selectedTask)) {
+		selectedTask.set(null)
+	}
+	const task = get(tasks).find((task) => task.id === payload)
+	selectedTask.set(task)
+}
 export async function closeTask(payload: Task): Promise<void> {
 	try {
 		const { id } = payload
