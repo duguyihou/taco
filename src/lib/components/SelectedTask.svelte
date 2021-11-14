@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { selectedTask } from '$lib/store/selectedTask'
-	import Fa from 'svelte-fa/src/fa.svelte'
+	import Fa from 'svelte-fa'
 	import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 	$: ({ priority, content, description } = $selectedTask)
 </script>
