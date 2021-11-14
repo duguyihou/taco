@@ -3,13 +3,8 @@
 	import Star from './Star.svelte'
 
 	import Fa from 'svelte-fa'
-	import {
-		faAngleRight,
-		faCalendarAlt,
-		faPen,
-		faPlus,
-		faTrash
-	} from '@fortawesome/free-solid-svg-icons'
+	import { faAngleRight, faCalendarAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
+	import Note from './Note.svelte'
 	$: ({ priority, content, description } = $selectedTask)
 </script>
 
@@ -20,23 +15,18 @@
 		<Star {priority} />
 	</section>
 	<section class="due">
-		<div class="icon">
-			<Fa icon={faCalendarAlt} size="sm" />
-		</div>
-		<input class="w-full" type="date" value={$selectedTask.due ? $selectedTask.due.date : ''} />
+		<Fa icon={faCalendarAlt} size="sm" />
+		<input
+			class="w-full px-2"
+			type="date"
+			value={$selectedTask.due ? $selectedTask.due.date : ''}
+		/>
 	</section>
 	<section class="sub">
-		<div class="icon">
-			<Fa icon={faPlus} size="sm" />
-		</div>
-		<input class="sub-task" type="text" placeholder="Add a subtask" />
+		<Fa icon={faPlus} size="sm" />
+		<input class="px-2" type="text" placeholder="Add a subtask" />
 	</section>
-	<section class="note">
-		<div class="icon">
-			<Fa icon={faPen} size="sm" />
-		</div>
-		<textarea placeholder="Add a note">{description}</textarea>
-	</section>
+	<Note {description} />
 	<footer>
 		<div class="icon">
 			<Fa icon={faAngleRight} size="sm" />
@@ -63,16 +53,11 @@
 	}
 	.due,
 	.sub {
-		@apply w-full py-2 flex flex-row justify-start items-center;
+		@apply w-full p-2 flex flex-row justify-start items-center;
 	}
 	.icon {
 		@apply mx-2 flex justify-center items-center text-blue;
 	}
-
-	.note {
-		@apply w-full py-2 flex flex-row justify-start items-start;
-	}
-
 	footer {
 		@apply absolute bottom-0 w-full border-t border-blue-light flex justify-between p-2;
 	}
