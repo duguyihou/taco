@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { selectedTask } from '$lib/store/selectedTask'
-	$: ({ priority, content, due, description } = $selectedTask)
+	$: ({ priority, content, description } = $selectedTask)
 </script>
 
 <form>
@@ -12,7 +12,7 @@
 	<section>
 		<label>
 			Due:
-			<input type="date" value={due.date} />
+			<input type="date" value={$selectedTask.due ? $selectedTask.due.date : ''} />
 		</label>
 	</section>
 	<section>
