@@ -13,11 +13,13 @@
 	})
 </script>
 
-<section>
+<div>
 	<Header title="Inbox" />
-	<NewTask />
-	<Project />
-</section>
+	<section>
+		<NewTask />
+		<Project />
+	</section>
+</div>
 {#if $selectedTask}
 	<div class="selected-task" transition:fly>
 		<SelectedTask />
@@ -25,10 +27,13 @@
 {/if}
 
 <style lang="postcss">
+	div {
+		@apply w-full h-screen flex flex-col justify-start items-center;
+	}
 	section {
-		@apply px-4 bg-blue-light flex-1 flex flex-col justify-start items-center;
+		@apply w-full h-full px-4 bg-bg flex-1 flex flex-col justify-start items-center;
 	}
 	.selected-task {
-		@apply w-1/5 h-full;
+		@apply w-1/3 h-full;
 	}
 </style>

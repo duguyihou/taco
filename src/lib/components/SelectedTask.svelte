@@ -22,10 +22,13 @@
 
 <style lang="postcss">
 	form {
-		@apply container bg-grey-light w-full h-screen p-2 border-none text-base flex flex-col justify-start items-center;
+		@apply bg-grey-light w-full h-screen p-2 border-none text-base flex flex-col justify-start items-center;
 	}
 	section {
 		@apply w-full py-2 flex flex-row justify-between items-center;
+	}
+	input {
+		@apply w-4 h-4 mx-2;
 	}
 	.content {
 		@apply flex-1;

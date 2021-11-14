@@ -25,7 +25,7 @@
 
 <style lang="postcss">
 	form {
-		@apply container overflow-hidden w-full px-2 bg-blue border-0 shadow-xl  h-auto rounded flex flex-row justify-start items-start;
+		@apply container overflow-hidden w-full px-2 mt-1 bg-blue border-0 shadow-xl  h-auto rounded flex flex-row justify-start items-start;
 	}
 	div {
 		@apply w-full pl-6 py-1 m-px text-base rounded overflow-hidden bg-blue text-grey-light cursor-pointer focus:bg-grey-light focus:text-black-light focus:border-grey-light border-0 outline-none;

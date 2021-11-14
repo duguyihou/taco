@@ -4,8 +4,9 @@ module.exports = {
 	theme: {
 		colors: {
 			blue: {
-				light: '#B6BEB2',
-				DEFAULT: '#719979'
+				light: '#809271',
+				DEFAULT: '#638263',
+				dark: '#546E55'
 			},
 			black: {
 				light: '#443c44',
@@ -18,7 +19,9 @@ module.exports = {
 				light: '#fff',
 				dark: '#F5F3F2',
 				DEFAULT: '#f7f7f7'
-			}
+			},
+			selected: '#E2F0FF',
+			bg: '#C1C7B9'
 		},
 		extend: {
 			gridTemplateColumns: {

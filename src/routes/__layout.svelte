@@ -8,17 +8,17 @@
 	]
 </script>
 
-<main class="flex-1 flex flex-row w-full h-full box-border bg-blue-light">
-	<section class="section">
+<main class="flex flex-row w-full h-full">
+	<aside class="aside">
 		<nav class="nav">
-			<div class="name">Kong</div>
+			<header class="name">Kong</header>
 		</nav>
 		<ul class="ul">
 			{#each links as { title, href }}
 				<a class="link" {href}>{title}</a>
 			{/each}
 		</ul>
-	</section>
+	</aside>
 	<slot />
 </main>
 
@@ -28,13 +28,13 @@
 	@tailwind utilities;
 
 	.nav {
-		@apply w-full bg-blue-light;
+		@apply w-full bg-blue-dark;
 	}
 	.name {
-		@apply text-black-light text-left text-lg px-2 py-0.5;
+		@apply text-grey-light text-left text-lg p-2;
 	}
-	.section {
-		@apply w-60 h-screen bg-grey-light shadow-inner flex flex-col justify-start items-center;
+	.aside {
+		@apply w-1/5 h-screen bg-grey-light shadow-inner flex flex-col justify-start items-center;
 	}
 	.ul {
 		@apply w-full h-full text-left text-black-light flex flex-col justify-start items-start;
