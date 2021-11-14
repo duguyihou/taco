@@ -1,11 +1,5 @@
 <script lang="ts">
-	import {
-		closeTask,
-		reopenTask,
-		selectedTask,
-		selectTaskBy,
-		updateTask
-	} from '$lib/store/selectedTask'
+	import { closeTask, reopenTask, selectTaskBy, updateTask } from '$lib/store/selectedTask'
 	import { createForm } from 'svelte-forms-lib'
 
 	import type { Task } from '$lib/typings'
