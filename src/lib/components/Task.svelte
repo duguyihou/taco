@@ -33,7 +33,7 @@
 		@apply container bg-grey-light w-full h-auto px-2 py-1 border-none mt-1 text-base rounded flex flex-row justify-start items-center;
 	}
 	input {
-		@apply w-3 h-3 mx-2 border-2 cursor-pointer flex justify-center items-center;
+		@apply w-4 h-4 mx-2;
 	}
 	div {
 		@apply flex-1 cursor-pointer;

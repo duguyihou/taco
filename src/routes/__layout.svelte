@@ -1,24 +1,35 @@
 <script lang="ts">
+	import Fa from 'svelte-fa'
+	import {
+		faInbox,
+		faCalendarDay,
+		faCalendarWeek,
+		faCheckSquare
+	} from '@fortawesome/free-solid-svg-icons'
 	import '../app.postcss'
+
 	const links = [
-		{ title: 'Inbox', href: '/' },
-		{ title: 'Today', href: '/today' },
-		{ title: 'Week', href: '/week' },
-		{ title: 'Done', href: '/done' }
+		{ title: 'Inbox', href: '/', icon: faInbox },
+		{ title: 'Today', href: '/today', icon: faCalendarDay },
+		{ title: 'Week', href: '/week', icon: faCalendarWeek },
+		{ title: 'Done', href: '/done', icon: faCheckSquare }
 	]
 </script>
 
-<main class="flex-1 flex flex-row w-full h-full box-border bg-blue-light">
-	<section class="section">
+<main class="flex flex-row w-full h-full">
+	<aside class="aside">
 		<nav class="nav">
-			<div class="name">Kong</div>
+			<header class="name">Kong</header>
 		</nav>
 		<ul class="ul">
-			{#each links as { title, href }}
-				<a class="link" {href}>{title}</a>
+			{#each links as { title, href, icon }}
+				<li class="li">
+					<Fa {icon} size="sm" />
+					<a class="link" {href}>{title}</a>
+				</li>
 			{/each}
 		</ul>
-	</section>
+	</aside>
 	<slot />
 </main>
 
@@ -28,18 +39,21 @@
 	@tailwind utilities;
 
 	.nav {
-		@apply w-full bg-blue-light;
+		@apply w-full bg-blue-dark;
 	}
 	.name {
-		@apply text-black-light text-left text-lg px-2 py-0.5;
+		@apply text-grey-light text-left text-lg p-2;
 	}
-	.section {
-		@apply w-60 h-screen bg-grey-light shadow-inner flex flex-col justify-start items-center;
+	.aside {
+		@apply w-1/5 h-screen bg-grey-light shadow-inner flex flex-col justify-start items-center;
 	}
 	.ul {
 		@apply w-full h-full text-left text-black-light flex flex-col justify-start items-start;
 	}
+	.li {
+		@apply w-full pl-4 text-blue-dark flex flex-row justify-start items-center hover:bg-grey-dark;
+	}
 	.link {
-		@apply w-full p-2 text-sm border-b border-blue-light hover:bg-grey-dark;
+		@apply flex-1 p-2 text-sm;
 	}
 </style>
