@@ -3,13 +3,7 @@
 	import Star from './Star.svelte'
 
 	import Fa from 'svelte-fa'
-	import {
-		faAngleRight,
-		faCalendarAlt,
-		faPen,
-		faPlus,
-		faTrash
-	} from '@fortawesome/free-solid-svg-icons'
+	import { faAngleRight, faCalendarAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 	import Note from './Note.svelte'
 	$: ({ priority, content, description } = $selectedTask)
 </script>
