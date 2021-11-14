@@ -5,14 +5,24 @@ import { writable } from 'svelte/store'
 export const tasks = writable<Task[]>([])
 
 export async function fetchAllTasks(): Promise<void> {
-	const response = await getAll()
-	tasks.set(response)
+	try {
+		const response = await getAll()
+		const { data } = response
+		tasks.set(data.reverse())
+	} catch (error) {
+		console.error(error)
+	}
 }
 
 export async function updateTasksBy(payload: NewTask): Promise<void> {
-	const response = await add(payload)
-	tasks.update((state) => {
-		state = [response, ...state]
-		return state
-	})
+	try {
+		const response = await add(payload)
+		const { data } = response
+		tasks.update((state) => {
+			state = [data, ...state]
+			return state
+		})
+	} catch (error) {
+		console.error(error)
+	}
 }

@@ -1,17 +1,31 @@
 <script lang="ts">
-	import { selectTaskBy } from '$lib/store/selectedTask'
+	import { closeTask, reopenTask, selectTaskBy, updateTask } from '$lib/store/selectedTask'
+	import { createForm } from 'svelte-forms-lib'
 
 	import type { Task } from '$lib/typings'
 
 	export let task: Task
-	export let completed: boolean
-	$: ({ content, priority, id } = task)
+	const { form } = createForm({
+		initialValues: task,
+		onSubmit: async (initialValues) => {
+			const { id } = initialValues
+			await updateTask(id, initialValues)
+		}
+	})
+
+	async function handleCheck(completed: boolean) {
+		completed ? await closeTask(task) : await reopenTask(task)
+	}
 </script>
 
 <form>
-	<input type="checkbox" bind:checked={completed} />
-	<div on:click={() => selectTaskBy(id)}>{content}</div>
-	<span>{`p-${priority}`}</span>
+	<input
+		type="checkbox"
+		bind:checked={$form.completed}
+		on:change={() => handleCheck($form.completed)}
+	/>
+	<div on:click={() => selectTaskBy($form.id)}>{$form.content}</div>
+	<span>{`p-${$form.priority}`}</span>
 </form>
 
 <style lang="postcss">
