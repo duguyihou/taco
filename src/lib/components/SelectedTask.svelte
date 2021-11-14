@@ -3,8 +3,10 @@
 	import Star from './Star.svelte'
 
 	import Fa from 'svelte-fa'
-	import { faAngleRight, faCalendarAlt, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
+	import { faAngleRight, faCalendarAlt, faTrash } from '@fortawesome/free-solid-svg-icons'
 	import Note from './Note.svelte'
+	import SubTask from './SubTask.svelte'
+	import Due from './Due.svelte'
 	$: ({ priority, content, description } = $selectedTask)
 </script>
 
@@ -14,18 +16,8 @@
 		<div class="content" contenteditable bind:textContent={content} />
 		<Star {priority} />
 	</section>
-	<section class="due">
-		<Fa icon={faCalendarAlt} size="sm" />
-		<input
-			class="w-full px-2"
-			type="date"
-			value={$selectedTask.due ? $selectedTask.due.date : ''}
-		/>
-	</section>
-	<section class="sub">
-		<Fa icon={faPlus} size="sm" />
-		<input class="px-2" type="text" placeholder="Add a subtask" />
-	</section>
+	<Due />
+	<SubTask />
 	<Note {description} />
 	<footer>
 		<div class="icon">
@@ -51,10 +43,7 @@
 	.content {
 		@apply flex-1;
 	}
-	.due,
-	.sub {
-		@apply w-full p-2 flex flex-row justify-start items-center;
-	}
+
 	.icon {
 		@apply mx-2 flex justify-center items-center text-blue;
 	}
