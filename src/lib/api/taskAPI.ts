@@ -18,7 +18,7 @@ export const reopen = (id: number): Promise<AxiosResponse<unknown, unknown>> =>
 	request({ method: 'POST', url: `/tasks/${id}/reopen` })
 
 export const update = (id: number, data: Task): Promise<AxiosResponse<unknown, unknown>> =>
-	request({ method: 'POST', url: `/taks/${id}`, data })
+	request({ method: 'POST', url: `/tasks/${id}`, data })
 
 export const deleteApi = (id: number): Promise<AxiosResponse<unknown, unknown>> =>
-	request({ method: 'DELETE', url: `/taks/${id}` })
+	request({ method: 'DELETE', url: `/tasks/${id}` })
