@@ -1,12 +1,18 @@
 <script lang="ts">
+	import type { Task } from '$lib/typings'
+
+	import Checkbox from './Checkbox.svelte'
+
 	import Star from './Star.svelte'
 
 	export let content: string
 	export let priority: number
+	export let task: Task
+	export let completed: boolean
 </script>
 
 <section>
-	<input type="checkbox" />
+	<Checkbox {completed} {task} />
 	<div contenteditable bind:textContent={content} />
 	<Star {priority} />
 </section>
@@ -16,9 +22,6 @@
 		@apply w-full py-2 flex flex-row justify-between items-center;
 	}
 
-	input {
-		@apply w-4 h-4 mx-2;
-	}
 	div {
 		@apply flex-1;
 	}
