@@ -1,6 +1,6 @@
 import { get, writable } from 'svelte/store'
 import type { Task } from '$lib/typings'
-import { close, getOneBy, reopen, update } from '$lib/api/taskAPI'
+import { close, deleteApi, getOneBy, reopen, update } from '$lib/api/taskAPI'
 import { tasks } from './tasks'
 
 export const selectedTask = writable<Task | null>(null)
@@ -18,12 +18,15 @@ export async function getTaskBy(payload: number): Promise<void> {
 }
 
 export function selectTaskBy(payload: number): void {
-	if (get(selectedTask)) {
-		selectedTask.set(null)
-	}
+	unselectTask()
 	const task = get(tasks).find((task) => task.id === payload)
 	selectedTask.set(task)
 }
+
+export function unselectTask(): void {
+	if (get(selectedTask)) selectedTask.set(null)
+}
+
 export async function closeTask(payload: Task): Promise<void> {
 	try {
 		const { id } = payload
@@ -53,11 +56,26 @@ export async function reopenTask(payload: Task): Promise<void> {
 		console.error(error)
 	}
 }
+
 export async function updateTask(id: number, payload: Task): Promise<void> {
 	try {
 		const response = await update(id, payload)
 		if (response.status === 204) {
 			console.log('need update task')
+		}
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+export async function deleteTask(payload: number): Promise<void> {
+	try {
+		const response = await deleteApi(payload)
+		if (response.status === 204) {
+			tasks.update((state) => {
+				state = state.filter((task) => task.id === payload)
+				return state
+			})
 		}
 	} catch (error) {
 		console.error(error)
