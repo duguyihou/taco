@@ -61,7 +61,7 @@ export async function updateTask(id: number, payload: Task): Promise<void> {
 	try {
 		const response = await update(id, payload)
 		if (response.status === 204) {
-			console.log('need update task')
+			console.log('update task successfully')
 		}
 	} catch (error) {
 		console.error(error)

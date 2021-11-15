@@ -20,7 +20,7 @@
 <form>
 	<Checkbox completed={$form.completed} task={$form} />
 	<div class="content" on:click={() => selectTaskBy($form.id)}>{$form.content}</div>
-	<Star priority={$form.priority} />
+	<Star priority={$form.priority} task={$form} />
 </form>
 
 <style lang="postcss">
