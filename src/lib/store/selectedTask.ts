@@ -73,7 +73,7 @@ export async function deleteTask(payload: number): Promise<void> {
 		const response = await deleteApi(payload)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state = state.filter((task) => task.id === payload)
+				state = state.filter((task) => task.id !== payload)
 				return state
 			})
 		}
