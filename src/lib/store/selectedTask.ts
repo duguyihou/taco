@@ -19,7 +19,7 @@ export async function getTaskBy(payload: number): Promise<void> {
 
 export function selectTaskBy(payload: number): void {
 	unselectTask()
-	const task = get(tasks).find((task) => task.id === payload)
+	const task = get(tasks).data.find((task) => task.id === payload)
 	selectedTask.set(task)
 }
 
@@ -33,7 +33,7 @@ export async function closeTask(payload: Task): Promise<void> {
 		const response = await close(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state = state.filter((task) => task.id !== id)
+				state.data = state.data.filter((task) => task.id !== id)
 				return state
 			})
 		}
@@ -48,7 +48,7 @@ export async function reopenTask(payload: Task): Promise<void> {
 		const response = await reopen(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state = [payload, ...state]
+				state.data = [payload, ...state.data]
 				return state
 			})
 		}
@@ -73,7 +73,7 @@ export async function deleteTask(payload: number): Promise<void> {
 		const response = await deleteApi(payload)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state = state.filter((task) => task.id !== payload)
+				state.data = state.data.filter((task) => task.id !== payload)
 				return state
 			})
 		}

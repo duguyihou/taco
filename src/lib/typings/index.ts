@@ -22,3 +22,9 @@ export interface Due {
 	string: string
 	timezone?: string
 }
+
+export interface TasksStore {
+	isLoading: boolean
+	data: Task[]
+	error: string
+}

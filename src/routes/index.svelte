@@ -5,25 +5,31 @@
 	import { onMount } from 'svelte'
 	import { fly } from 'svelte/transition'
 
-	import { fetchAllTasks } from '$lib/store/tasks'
+	import { fetchAllTasks, tasks } from '$lib/store/tasks'
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
 	import { selectedTask } from '$lib/store/selectedTask'
 	onMount(async () => {
-		await fetchAllTasks()
+		const tasks = await fetchAllTasks()
 	})
 </script>
 
-<div>
-	<Header title="Inbox" />
-	<section>
-		<NewTask />
-		<Project />
-	</section>
-</div>
-{#if $selectedTask}
-	<div class="selected-task" transition:fly>
-		<SelectedTask />
+{#if $tasks.isLoading}
+	<h1>loading</h1>
+{:else if $tasks.error}
+	<h1>error</h1>
+{:else}
+	<div>
+		<Header title="Inbox" />
+		<section>
+			<NewTask />
+			<Project />
+		</section>
 	</div>
+	{#if $selectedTask}
+		<div class="selected-task" transition:fly>
+			<SelectedTask />
+		</div>
+	{/if}
 {/if}
 
 <style lang="postcss">
