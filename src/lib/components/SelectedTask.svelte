@@ -17,14 +17,11 @@
 		content = $selectedTask.content
 		description = $selectedTask.description
 	}
-	function handleStar() {
-		priority === 1 ? (priority += 1) : (priority -= 1)
-	}
 </script>
 
 {#if $selectedTask}
 	<form>
-		<TaskHeader {completed} task={$selectedTask} {content} {priority} on:star={handleStar} />
+		<TaskHeader {completed} task={$selectedTask} {content} {priority} />
 		<Due />
 		<SubTask />
 		<Note {description} />

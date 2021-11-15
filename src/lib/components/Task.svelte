@@ -15,15 +15,12 @@
 			await updateTask(id, initialValues)
 		}
 	})
-	function handleStar() {
-		$form.priority === 1 ? $form.priority++ : $form.priority--
-	}
 </script>
 
 <form>
 	<Checkbox completed={$form.completed} task={$form} />
 	<div class="content" on:click={() => selectTaskBy($form.id)}>{$form.content}</div>
-	<Star priority={$form.priority} on:star={handleStar} />
+	<Star priority={$form.priority} task={$form} />
 </form>
 
 <style lang="postcss">

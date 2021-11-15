@@ -14,7 +14,7 @@
 <section>
 	<Checkbox {completed} {task} />
 	<div contenteditable bind:textContent={content} />
-	<Star bind:priority on:star />
+	<Star bind:priority {task} />
 </section>
 
 <style lang="postcss">
