@@ -5,16 +5,26 @@
 	import Due from './Due.svelte'
 	import TaskFooter from './TaskFooter.svelte'
 	import TaskHeader from './TaskHeader.svelte'
-	$: ({ priority, content, description } = $selectedTask)
+	let id: number
+	let priority: number
+	let content: string
+	let description: string
+	$: if ($selectedTask) {
+		priority = $selectedTask.priority
+		content = $selectedTask.content
+		description = $selectedTask.description
+	}
 </script>
 
-<form>
-	<TaskHeader {content} {priority} />
-	<Due />
-	<SubTask />
-	<Note {description} />
-	<TaskFooter />
-</form>
+{#if $selectedTask}
+	<form>
+		<TaskHeader {content} {priority} />
+		<Due />
+		<SubTask />
+		<Note {description} />
+		<TaskFooter {id} />
+	</form>
+{/if}
 
 <style lang="postcss">
 	form {
