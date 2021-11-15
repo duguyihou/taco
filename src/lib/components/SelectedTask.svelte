@@ -10,6 +10,7 @@
 	let content: string
 	let description: string
 	$: if ($selectedTask) {
+		id = $selectedTask.id
 		priority = $selectedTask.priority
 		content = $selectedTask.content
 		description = $selectedTask.description
