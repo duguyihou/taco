@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { closeTask, reopenTask } from '$lib/store/selectedTask'
+	import { closeTask, reopenTask } from '$lib/store/tasks'
 	import type { Task } from '$lib/typings'
 	export let task: Task
 	export let completed: boolean

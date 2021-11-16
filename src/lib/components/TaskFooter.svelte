@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Fa from 'svelte-fa'
 	import { faAngleRight, faTrash } from '@fortawesome/free-solid-svg-icons'
-	import { deleteTask, unselectTask } from '$lib/store/selectedTask'
+	import { deleteTask, unselectTask } from '$lib/store/tasks'
 	export let id: number
 </script>
 

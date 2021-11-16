@@ -27,10 +27,5 @@ export interface TasksStore {
 	isLoading: boolean
 	data: Task[]
 	error: string
-}
-
-export interface TaskStore {
-	isLoading: boolean
-	data: Task | null
-	error: string
+	selected: Task
 }

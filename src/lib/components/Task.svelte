@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { selectTaskBy, updateTask } from '$lib/store/selectedTask'
+	import { selectTaskBy, updateTask } from '$lib/store/tasks'
 	import { createForm } from 'svelte-forms-lib'
 
 	import type { Task } from '$lib/typings'

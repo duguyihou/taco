@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Fa from 'svelte-fa'
 	import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-	import { selectedTask } from '$lib/store/selectedTask'
+	import { tasks } from '$lib/store/tasks'
 </script>
 
 <section>
 	<Fa icon={faCalendarAlt} size="sm" />
 	<input
 		type="date"
-		value={$selectedTask.data && $selectedTask.data.due ? $selectedTask.data.due.date : ''}
+		value={$tasks.selected && $tasks.selected.due ? $tasks.selected.due.date : ''}
 	/>
 </section>
 

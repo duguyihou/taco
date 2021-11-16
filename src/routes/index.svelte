@@ -7,7 +7,6 @@
 
 	import { fetchAllTasks, tasks } from '$lib/store/tasks'
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
-	import { selectedTask } from '$lib/store/selectedTask'
 	onMount(async () => {
 		const tasks = await fetchAllTasks()
 	})
@@ -26,7 +25,7 @@
 		{/if}
 	</section>
 </div>
-{#if $selectedTask.data}
+{#if $tasks.selected}
 	<div class="selected-task" transition:fly>
 		<SelectedTask />
 	</div>

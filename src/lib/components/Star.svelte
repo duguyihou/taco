@@ -2,7 +2,7 @@
 	import Fa from 'svelte-fa'
 	import { faStar } from '@fortawesome/free-solid-svg-icons'
 	import type { Task } from '$lib/typings'
-	import { updateTask } from '$lib/store/selectedTask'
+	import { updateTask } from '$lib/store/tasks'
 
 	export let priority: number
 	export let task: Task
