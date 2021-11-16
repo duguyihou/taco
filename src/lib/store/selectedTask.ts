@@ -23,11 +23,12 @@ export async function getTaskBy(payload: number): Promise<void> {
 export function selectTaskBy(payload: number): void {
 	unselectTask()
 	const task = get(tasks).data.find((task) => task.id === payload)
+	console.log(get(selectedTask))
 	selectedTask.set({ ...initialState, data: task })
 }
 
 export function unselectTask(): void {
-	if (get(selectedTask)) selectedTask.set({ ...initialState, data: null })
+	selectedTask.set({ ...initialState, data: null })
 }
 
 export async function closeTask(payload: Task): Promise<void> {

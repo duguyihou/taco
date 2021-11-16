@@ -26,7 +26,7 @@
 		{/if}
 	</section>
 </div>
-{#if $selectedTask}
+{#if $selectedTask.data}
 	<div class="selected-task" transition:fly>
 		<SelectedTask />
 	</div>
