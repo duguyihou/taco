@@ -6,7 +6,10 @@
 
 <section>
 	<Fa icon={faCalendarAlt} size="sm" />
-	<input type="date" value={$selectedTask.data.due ? $selectedTask.data.due.date : ''} />
+	<input
+		type="date"
+		value={$selectedTask.data && $selectedTask.data.due ? $selectedTask.data.due.date : ''}
+	/>
 </section>
 
 <style lang="postcss">
