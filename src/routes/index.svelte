@@ -7,9 +7,7 @@
 
 	import { fetchAllTasks, tasks } from '$lib/store/tasks'
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
-	onMount(async () => {
-		const tasks = await fetchAllTasks()
-	})
+	onMount(async () => await fetchAllTasks())
 </script>
 
 <div>

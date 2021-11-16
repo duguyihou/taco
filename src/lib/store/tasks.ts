@@ -70,6 +70,7 @@ export async function closeTask(payload: Task): Promise<void> {
 		const response = await close(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
+				state.selected.completed = true
 				state.data = state.data.filter((task) => task.id !== id)
 				return state
 			})
@@ -85,6 +86,7 @@ export async function reopenTask(payload: Task): Promise<void> {
 		const response = await reopen(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
+				state.selected.completed = false
 				state.data = [payload, ...state.data]
 				return state
 			})
@@ -105,6 +107,23 @@ export async function updateTask(id: number, payload: Task): Promise<void> {
 	}
 }
 
+export async function handleStar(payload: Task): Promise<void> {
+	try {
+		let { priority } = payload
+		priority === 1 ? (priority += 1) : (priority -= 1)
+		const updatedTask = { ...payload, priority }
+		console.log(JSON.stringify(updatedTask))
+		console.log(get(tasks))
+		await updateTask(payload.id, updatedTask)
+		tasks.update((state) => {
+			state.selected.priority = priority
+			state.data = [updatedTask, ...state.data]
+			return state
+		})
+	} catch (error) {
+		console.error(error)
+	}
+}
 export async function deleteTask(payload: number): Promise<void> {
 	try {
 		const response = await deleteApi(payload)
