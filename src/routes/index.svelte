@@ -13,23 +13,23 @@
 	})
 </script>
 
-{#if $tasks.isLoading}
-	<h1>loading</h1>
-{:else if $tasks.error}
-	<h1>error</h1>
-{:else}
-	<div>
-		<Header title="Inbox" />
-		<section>
-			<NewTask />
+<div>
+	<Header title="Inbox" />
+	<section>
+		<NewTask />
+		{#if $tasks.isLoading}
+			<h1>loading</h1>
+		{:else if $tasks.error}
+			<h1>error</h1>
+		{:else}
 			<Project />
-		</section>
+		{/if}
+	</section>
+</div>
+{#if $selectedTask}
+	<div class="selected-task" transition:fly>
+		<SelectedTask />
 	</div>
-	{#if $selectedTask}
-		<div class="selected-task" transition:fly>
-			<SelectedTask />
-		</div>
-	{/if}
 {/if}
 
 <style lang="postcss">

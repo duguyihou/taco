@@ -10,18 +10,18 @@
 	let priority: number
 	let content: string
 	let description: string
-	$: if ($selectedTask) {
-		id = $selectedTask.id
-		completed = $selectedTask.completed
-		priority = $selectedTask.priority
-		content = $selectedTask.content
-		description = $selectedTask.description
+	$: if ($selectedTask.data) {
+		id = $selectedTask.data.id
+		completed = $selectedTask.data.completed
+		priority = $selectedTask.data.priority
+		content = $selectedTask.data.content
+		description = $selectedTask.data.description
 	}
 </script>
 
 {#if $selectedTask}
 	<form>
-		<TaskHeader {completed} task={$selectedTask} {content} {priority} />
+		<TaskHeader {completed} task={$selectedTask.data} {content} {priority} />
 		<Due />
 		<SubTask />
 		<Note {description} />

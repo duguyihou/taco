@@ -3,25 +3,25 @@ import type { NewTask, TasksStore } from '$lib/typings'
 import { writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
 
-const initialStore = { isLoading: false, data: [], error: '' }
-export const tasks = writable<TasksStore>(initialStore)
+const initialState = { isLoading: false, data: [], error: '' }
+export const tasks = writable<TasksStore>(initialState)
 
 export async function fetchAllTasks(): Promise<Writable<TasksStore>> {
 	try {
-		tasks.set({ ...initialStore, isLoading: true })
+		tasks.set({ ...initialState, isLoading: true })
 		const response = await getAll()
 		const { data } = response
-		tasks.set({ ...initialStore, data: data.reverse() })
+		tasks.set({ ...initialState, data: data.reverse() })
 	} catch (error) {
 		console.error(error)
-		tasks.set({ ...initialStore, error })
+		tasks.set({ ...initialState, error })
 	}
 	return tasks
 }
 
 export async function updateTasksBy(payload: NewTask): Promise<Writable<TasksStore>> {
 	try {
-		tasks.set({ ...initialStore, isLoading: true })
+		tasks.set({ ...initialState, isLoading: true })
 
 		const response = await add(payload)
 		const { data } = response
@@ -31,7 +31,7 @@ export async function updateTasksBy(payload: NewTask): Promise<Writable<TasksSto
 		})
 	} catch (error) {
 		console.error(error)
-		tasks.set({ ...initialStore, error })
+		tasks.set({ ...initialState, error })
 	}
 	return tasks
 }
