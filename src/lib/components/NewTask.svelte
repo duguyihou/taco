@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createForm } from 'svelte-forms-lib'
 	import type { NewTask } from '$lib/typings'
-	import { updateTasksBy } from '$lib/store/tasks'
+	import { updateTasksBy } from '$lib/store'
 
 	const initialValues = {
 		content: ''
