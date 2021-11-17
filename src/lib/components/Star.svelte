@@ -4,11 +4,10 @@
 	import type { Task } from '$lib/typings'
 	import { handleStar } from '$lib/store'
 
-	export let priority: number
 	export let task: Task
 </script>
 
-<button type="button" class:starred={priority > 1} on:click={() => handleStar(task)}>
+<button type="button" class:starred={task.priority > 1} on:click={() => handleStar(task)}>
 	<Fa icon={faStar} size="sm" />
 </button>
 

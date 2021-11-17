@@ -5,15 +5,13 @@
 
 	import Star from './Star.svelte'
 
-	export let content: string
-	export let priority: number
 	export let task: Task
 </script>
 
 <section>
 	<Checkbox {task} />
-	<div contenteditable bind:textContent={content} />
-	<Star bind:priority {task} />
+	<div contenteditable bind:textContent={task.content} />
+	<Star {task} />
 </section>
 
 <style lang="postcss">

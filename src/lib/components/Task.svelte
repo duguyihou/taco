@@ -7,13 +7,13 @@
 
 	export let task: Task
 	$: selected = $tasks.selected === task
-	$: ({ id, content, priority } = task)
+	$: ({ id, content } = task)
 </script>
 
 <form class:selected>
 	<Checkbox {task} />
 	<p class="content" on:click={() => selectTaskBy(id)}>{content}</p>
-	<Star {priority} {task} />
+	<Star {task} />
 </form>
 
 <style lang="postcss">
