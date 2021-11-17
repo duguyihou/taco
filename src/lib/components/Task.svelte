@@ -1,26 +1,19 @@
 <script lang="ts">
-	import { selectTaskBy, updateTask } from '$lib/store'
-	import { createForm } from 'svelte-forms-lib'
+	import { selectTaskBy, tasks } from '$lib/store'
 
 	import type { Task } from '$lib/typings'
 	import Star from './Star.svelte'
 	import Checkbox from './Checkbox.svelte'
 
 	export let task: Task
-
-	const { form } = createForm({
-		initialValues: task,
-		onSubmit: async (initialValues) => {
-			const { id } = initialValues
-			await updateTask(id, initialValues)
-		}
-	})
+	$: selected = $tasks.selected === task
+	$: ({ id, content, priority } = task)
 </script>
 
-<form>
-	<Checkbox completed={$form.completed} task={$form} />
-	<div class="content" on:click={() => selectTaskBy($form.id)}>{$form.content}</div>
-	<Star priority={$form.priority} task={$form} />
+<form class:selected>
+	<Checkbox {task} />
+	<p class="content" on:click={() => selectTaskBy(id)}>{content}</p>
+	<Star {priority} {task} />
 </form>
 
 <style lang="postcss">
@@ -28,7 +21,11 @@
 		@apply container bg-grey-light w-full h-auto px-2 py-1 border-none mt-1 text-base rounded flex flex-row justify-start items-center;
 	}
 
-	.content {
+	p {
 		@apply flex-1 cursor-pointer;
+	}
+
+	.selected {
+		@apply bg-selected;
 	}
 </style>

@@ -2,13 +2,18 @@
 	import { closeTask, reopenTask } from '$lib/store'
 	import type { Task } from '$lib/typings'
 	export let task: Task
-	export let completed: boolean
 	async function handleCheck(completed: boolean) {
 		completed ? await closeTask(task) : await reopenTask(task)
 	}
 </script>
 
-<input type="checkbox" bind:checked={completed} on:change={() => handleCheck(completed)} />
+{#if task}
+	<input
+		type="checkbox"
+		bind:checked={task.completed}
+		on:change={() => handleCheck(task.completed)}
+	/>
+{/if}
 
 <style lang="postcss">
 	input {
