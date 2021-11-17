@@ -122,12 +122,13 @@ export async function handleStar(payload: Task): Promise<void> {
 		console.error(error)
 	}
 }
-export async function deleteTask(payload: number): Promise<void> {
+export async function deleteTask(payload: Task): Promise<void> {
 	try {
-		const response = await deleteApi(payload)
+		const { id } = payload
+		const response = await deleteApi(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state.data = state.data.filter((task) => task.id !== payload)
+				state.data = state.data.filter((task) => task.id !== id)
 				return state
 			})
 		}

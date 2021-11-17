@@ -2,14 +2,15 @@
 	import Fa from 'svelte-fa'
 	import { faAngleRight, faTrash } from '@fortawesome/free-solid-svg-icons'
 	import { deleteTask, unselectTask } from '$lib/store'
-	export let id: number
+	import type { Task } from '$lib/typings'
+	export let task: Task
 </script>
 
 <footer>
 	<button type="button" on:click={() => unselectTask()}>
 		<Fa icon={faAngleRight} size="sm" />
 	</button>
-	<button type="button" class="text-red" on:click={() => deleteTask(id)}>
+	<button type="button" class="text-red" on:click={() => deleteTask(task)}>
 		<Fa icon={faTrash} size="sm" />
 	</button>
 </footer>
