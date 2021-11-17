@@ -70,7 +70,7 @@ export async function closeTask(payload: Task): Promise<void> {
 		const response = await close(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				if (state.selected) state.selected.completed = true
+				if (state.selected && state.selected === payload) state.selected.completed = true
 				state.data = state.data.filter((task) => task.id !== id)
 				return state
 			})
@@ -86,7 +86,7 @@ export async function reopenTask(payload: Task): Promise<void> {
 		const response = await reopen(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state.selected.completed = false
+				if (state.selected && state.selected === payload) state.selected.completed = false
 				state.data = [payload, ...state.data]
 				return state
 			})
