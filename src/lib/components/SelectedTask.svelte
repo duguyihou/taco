@@ -6,13 +6,11 @@
 	import TaskHeader from './TaskHeader.svelte'
 	import { tasks } from '$lib/store'
 	let id: number
-	let completed: boolean
 	let priority: number
 	let content: string
 	let description: string
 	$: if ($tasks.selected) {
 		id = $tasks.selected.id
-		completed = $tasks.selected.completed
 		priority = $tasks.selected.priority
 		content = $tasks.selected.content
 		description = $tasks.selected.description
@@ -21,7 +19,7 @@
 
 {#if $tasks}
 	<form>
-		<TaskHeader {completed} task={$tasks.selected} {content} {priority} />
+		<TaskHeader task={$tasks.selected} {content} {priority} />
 		<Due />
 		<SubTask />
 		<Note {description} />

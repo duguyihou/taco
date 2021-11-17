@@ -8,11 +8,10 @@
 	export let content: string
 	export let priority: number
 	export let task: Task
-	export let completed: boolean
 </script>
 
 <section>
-	<Checkbox {completed} {task} />
+	<Checkbox {task} />
 	<div contenteditable bind:textContent={content} />
 	<Star bind:priority {task} />
 </section>

@@ -70,7 +70,7 @@ export async function closeTask(payload: Task): Promise<void> {
 		const response = await close(id)
 		if (response.status === 204) {
 			tasks.update((state) => {
-				state.selected.completed = true
+				if (state.selected) state.selected.completed = true
 				state.data = state.data.filter((task) => task.id !== id)
 				return state
 			})
