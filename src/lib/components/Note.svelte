@@ -1,12 +1,14 @@
 <script lang="ts">
 	import Fa from 'svelte-fa'
 	import { faPen } from '@fortawesome/free-solid-svg-icons'
-	export let description: string
+	import type { Task } from '$lib/typings'
+
+	export let task: Task
 </script>
 
 <section>
 	<Fa icon={faPen} size="sm" />
-	<div contenteditable bind:textContent={description} />
+	<div contenteditable bind:textContent={task.description} />
 </section>
 
 <style lang="postcss">
