@@ -113,10 +113,16 @@ export async function handleStar(payload: Task): Promise<void> {
 		priority === 1 ? (priority += 1) : (priority -= 1)
 		await updateTask(payload.id, { ...payload, priority })
 		tasks.update((state) => {
-			if (state.selected && state.selected === payload) state.selected.priority = priority
-			const idx = state.data.findIndex((task) => task === payload)
-			state.data.splice(idx, 1, state.selected)
-			return state
+			if (state.selected && state.selected === payload) {
+				state.selected.priority = priority
+				const idx = state.data.findIndex((task) => task === payload)
+				state.data.splice(idx, 1, state.selected)
+				return state
+			} else {
+				const idx = state.data.findIndex((task) => task === payload)
+				state.data.splice(idx, 1, { ...payload, priority })
+				return state
+			}
 		})
 	} catch (error) {
 		console.error(error)
