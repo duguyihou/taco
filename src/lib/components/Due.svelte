@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Fa from 'svelte-fa'
 	import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
-	import { tasks } from '$lib/store/tasks'
+	import { tasks } from '$lib/store'
 </script>
 
 <section>

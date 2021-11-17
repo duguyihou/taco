@@ -4,7 +4,7 @@
 	import Due from './Due.svelte'
 	import TaskFooter from './TaskFooter.svelte'
 	import TaskHeader from './TaskHeader.svelte'
-	import { tasks } from '$lib/store/tasks'
+	import { tasks } from '$lib/store'
 	let id: number
 	let completed: boolean
 	let priority: number
