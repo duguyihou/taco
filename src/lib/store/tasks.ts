@@ -107,6 +107,21 @@ export async function updateTask(id: number, payload: Task): Promise<void> {
 	}
 }
 
+export async function deleteTask(payload: Task): Promise<void> {
+	try {
+		const { id } = payload
+		const response = await deleteApi(id)
+		if (response.status === 204) {
+			tasks.update((state) => {
+				state.data = state.data.filter((task) => task.id !== id)
+				return state
+			})
+		}
+	} catch (error) {
+		console.error(error)
+	}
+}
+
 export async function handleStar(payload: Task): Promise<void> {
 	try {
 		let { priority } = payload
@@ -128,17 +143,12 @@ export async function handleStar(payload: Task): Promise<void> {
 		console.error(error)
 	}
 }
-export async function deleteTask(payload: Task): Promise<void> {
-	try {
-		const { id } = payload
-		const response = await deleteApi(id)
-		if (response.status === 204) {
-			tasks.update((state) => {
-				state.data = state.data.filter((task) => task.id !== id)
-				return state
-			})
-		}
-	} catch (error) {
-		console.error(error)
-	}
+export async function updateContent(payload: Task): Promise<void> {
+	const { id, content } = payload
+	console.log(content)
+	tasks.update((state) => {
+		const idx = state.data.findIndex((task) => task.id === id)
+		state.data.splice(idx, 1, payload)
+		return state
+	})
 }

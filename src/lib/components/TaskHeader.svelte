@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { updateContent } from '$lib/store/tasks'
+
 	import type { Task } from '$lib/typings'
 
 	import Checkbox from './Checkbox.svelte'
@@ -10,7 +12,7 @@
 
 <section>
 	<Checkbox {task} />
-	<div contenteditable bind:textContent={task.content} />
+	<div contenteditable bind:textContent={task.content} on:input={() => updateContent(task)} />
 	<Star {task} />
 </section>
 
@@ -20,6 +22,6 @@
 	}
 
 	div {
-		@apply flex-1;
+		@apply flex-1 whitespace-pre-wrap break-words overflow-y-hidden;
 	}
 </style>

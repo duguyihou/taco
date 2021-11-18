@@ -22,7 +22,7 @@
 	}
 
 	p {
-		@apply flex-1 cursor-pointer;
+		@apply flex-1 cursor-pointer whitespace-nowrap overflow-ellipsis overflow-hidden;
 	}
 
 	.selected {
