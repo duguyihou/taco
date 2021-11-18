@@ -96,8 +96,9 @@ export async function reopenTask(payload: Task): Promise<void> {
 	}
 }
 
-export async function updateTask(id: number, payload: Task): Promise<void> {
+export async function updateTask(payload: Task): Promise<void> {
 	try {
+		const { id } = payload
 		const response = await update(id, payload)
 		if (response.status === 204) {
 			console.log('update task successfully')
@@ -126,7 +127,7 @@ export async function handleStar(payload: Task): Promise<void> {
 	try {
 		let { priority } = payload
 		priority === 1 ? (priority += 1) : (priority -= 1)
-		await updateTask(payload.id, { ...payload, priority })
+		await updateTask({ ...payload, priority })
 		tasks.update((state) => {
 			if (state.selected && state.selected === payload) {
 				state.selected.priority = priority
