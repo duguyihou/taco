@@ -16,10 +16,19 @@
 			}
 		}
 	})
+
+	async function handleEnter(event: KeyboardEvent) {
+		if (event.key === 'Enter') {
+			event.preventDefault()
+			await updateTasksBy($form)
+			$form.content = ''
+			;(event.target as HTMLElement).blur()
+		}
+	}
 </script>
 
 <form>
-	<div contenteditable bind:textContent={$form.content} />
+	<div contenteditable on:keydown={handleEnter} bind:textContent={$form.content} />
 	<button class:show={!$form.content} on:click={handleSubmit}>create</button>
 </form>
 
