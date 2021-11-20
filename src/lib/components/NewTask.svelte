@@ -2,6 +2,7 @@
 	import { createForm } from 'svelte-forms-lib'
 	import type { NewTask } from '$lib/typings'
 	import { updateTasksBy } from '$lib/store'
+	import { throttle } from 'lodash-es'
 
 	const initialValues = {
 		content: ''
@@ -17,18 +18,21 @@
 		}
 	})
 
-	async function handleEnter(event: KeyboardEvent) {
-		if (event.key === 'Enter') {
+	const handleEnter = throttle(async (event: KeyboardEvent) => {
+		if ($form.content && event.key === 'Enter') {
 			event.preventDefault()
 			await updateTasksBy($form)
 			$form.content = ''
-			;(event.target as HTMLElement).blur()
 		}
-	}
+	}, 1000)
 </script>
 
 <form>
-	<div contenteditable on:keydown={handleEnter} bind:textContent={$form.content} />
+	<div
+		contenteditable
+		on:keydown={(event) => handleEnter(event)}
+		bind:textContent={$form.content}
+	/>
 	<button class:show={!$form.content} on:click={handleSubmit}>create</button>
 </form>
 
