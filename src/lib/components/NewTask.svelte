@@ -2,7 +2,7 @@
 	import { createForm } from 'svelte-forms-lib'
 	import type { NewTask } from '$lib/typings'
 	import { updateTasksBy } from '$lib/store'
-	import { throttle } from 'lodash'
+	import { throttle } from 'lodash-es'
 
 	const initialValues = {
 		content: ''

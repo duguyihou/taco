@@ -19,7 +19,7 @@
 		"@sveltejs/adapter-netlify": "^1.0.0-next.35",
 		"@sveltejs/kit": "next",
 		"@types/cookie": "^0.4.1",
-		"@types/lodash": "^4.14.177",
+		"@types/lodash-es": "^4.17.5",
 		"@typescript-eslint/eslint-plugin": "^4.33.0",
 		"@typescript-eslint/parser": "^4.33.0",
 		"autoprefixer": "^10.4.0",

@@ -2,7 +2,7 @@ import { add, close, deleteApi, getAll, getOneBy, reopen, update } from '$lib/ap
 import type { NewTask, Task, TasksStore } from '$lib/typings'
 import { get, writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 
 const initialState = { isLoading: false, data: [], selected: null, error: '' }
 export const tasks = writable<TasksStore>(initialState)
