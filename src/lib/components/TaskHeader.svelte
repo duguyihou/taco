@@ -11,10 +11,9 @@
 
 	async function handleSubmit(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			console.log(task)
 			event.preventDefault()
-			await updateTask(task)
 			;(event.target as HTMLElement).blur()
+			await updateTask(task)
 		}
 	}
 </script>
