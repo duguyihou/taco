@@ -146,8 +146,7 @@ export async function handleStar(payload: Task): Promise<void> {
 	}
 }
 export const updateContent = debounce((payload: Task): void => {
-	const { id, content } = payload
-	console.log(content)
+	const { id } = payload
 	tasks.update((state) => {
 		const idx = state.data.findIndex((task) => task.id === id)
 		state.data.splice(idx, 1, payload)
