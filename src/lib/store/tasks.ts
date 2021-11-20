@@ -20,7 +20,7 @@ export async function fetchAllTasks(): Promise<Writable<TasksStore>> {
 	return tasks
 }
 
-export async function updateTasksBy(payload: NewTask): Promise<Writable<TasksStore>> {
+export const updateTasksBy = debounce(async (payload: NewTask): Promise<Writable<TasksStore>> => {
 	try {
 		const response = await add(payload)
 		const { data } = response
@@ -33,7 +33,7 @@ export async function updateTasksBy(payload: NewTask): Promise<Writable<TasksSto
 		tasks.set({ ...initialState, error })
 	}
 	return tasks
-}
+}, 1000)
 
 export async function getTaskBy(payload: number): Promise<void> {
 	try {

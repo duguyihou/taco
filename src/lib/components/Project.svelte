@@ -3,6 +3,19 @@
 	import Task from './Task.svelte'
 </script>
 
-{#each $tasks.data as task (task.id)}
-	<Task {task} />
-{/each}
+<div>
+	{#each $tasks.data as task (task.id)}
+		<Task {task} />
+	{/each}
+</div>
+
+<style lang="postcss">
+	div {
+		width: 100%;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+	::-webkit-scrollbar {
+		display: none;
+	}
+</style>
