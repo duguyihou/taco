@@ -10,6 +10,7 @@
 	onMount(async () => await fetchAllTasks())
 </script>
 
+<svelte:head><title>Inbox | Taco</title></svelte:head>
 <div>
 	<Header title="Inbox" />
 	<section>

@@ -7,7 +7,12 @@
 	export let task: Task
 </script>
 
-<button type="button" class:starred={task.priority > 1} on:click={() => handleStar(task)}>
+<button
+	aria-label="star"
+	type="button"
+	class:starred={task.priority > 1}
+	on:click={() => handleStar(task)}
+>
 	<Fa icon={faStar} size="sm" />
 </button>
 
