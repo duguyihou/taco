@@ -116,6 +116,7 @@ export async function deleteTask(payload: Task): Promise<void> {
 		if (response.status === 204) {
 			tasks.update((state) => {
 				state.data = state.data.filter((task) => task.id !== id)
+				state.selected = null
 				return state
 			})
 		}
