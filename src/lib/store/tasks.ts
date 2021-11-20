@@ -153,4 +153,4 @@ export const updateContent = debounce((payload: Task): void => {
 		state.data.splice(idx, 1, payload)
 		return state
 	})
-}, 500)
+}, 1000)
