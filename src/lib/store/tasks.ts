@@ -2,6 +2,7 @@ import { add, close, deleteApi, getAll, getOneBy, reopen, update } from '$lib/ap
 import type { NewTask, Task, TasksStore } from '$lib/typings'
 import { get, writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
+import { debounce } from 'lodash'
 
 const initialState = { isLoading: false, data: [], selected: null, error: '' }
 export const tasks = writable<TasksStore>(initialState)
@@ -144,7 +145,7 @@ export async function handleStar(payload: Task): Promise<void> {
 		console.error(error)
 	}
 }
-export async function updateContent(payload: Task): Promise<void> {
+export const updateContent = debounce((payload: Task): void => {
 	const { id, content } = payload
 	console.log(content)
 	tasks.update((state) => {
@@ -152,4 +153,4 @@ export async function updateContent(payload: Task): Promise<void> {
 		state.data.splice(idx, 1, payload)
 		return state
 	})
-}
+}, 500)
