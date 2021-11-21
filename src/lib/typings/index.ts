@@ -5,13 +5,15 @@ export interface NewTask {
 export interface Task {
 	id: number
 	content: string
-	description: string
+	description?: string
+	project_id?: number
+	parent_id?: number
+	order?: number
+	priority?: number
 	completed: boolean
-	order: number
-	starred: boolean
-	priority: number
-	project_id: number
-	parent_id: number
+	due_string?: string
+	due_date?: string
+	due_datetime?: string
 	due: Due
 	url: string
 }
@@ -39,4 +41,6 @@ export interface TasksStore {
 	data: Task[]
 	error: string
 	selected: Task
+	today?: Task[]
+	future?: Task[]
 }

@@ -159,19 +159,14 @@ export async function handleStar(id: number, priority: number): Promise<void> {
 	}
 }
 
-export const updateDue = async (id: number, date: string): Promise<void> => {
-	dayjs.extend(relativeTime)
-	const due = {
-		date: dayjs(date).format('YYYY-MM-DD'),
-		string: dayjs(date).fromNow(),
-		recurring: false
-	}
-	await updateTask(id, { due_date: dayjs(date).format('YYYY-MM-DD') })
+export const updateDueDate = async (id: number, date: string): Promise<void> => {
+	const due_date = dayjs(date).format('YYYY-MM-DD')
+	await updateTask(id, { due_date })
 	tasks.update((state) => {
-		state.selected.due = due
+		state.selected.due_date = due_date
 		const idx = state.data.findIndex((task) => task.id === id)
 		const oldTask = state.data.find((task) => task.id === id)
-		state.data.splice(idx, 1, { ...oldTask, due })
+		state.data.splice(idx, 1, { ...oldTask, due_date })
 		return state
 	})
 }
