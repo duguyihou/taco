@@ -11,6 +11,7 @@ export interface Task {
 	starred: boolean
 	priority: number
 	project_id: number
+	parent_id: number
 	due: Due
 	url: string
 }

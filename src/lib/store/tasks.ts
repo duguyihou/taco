@@ -24,6 +24,7 @@ export async function fetchAllTasks(): Promise<Writable<TasksStore>> {
 
 export const updateTasksBy = debounce(async (payload: NewTask): Promise<Writable<TasksStore>> => {
 	try {
+		console.log(payload)
 		const response = await add(payload)
 		const { data } = response
 		tasks.update((state) => {
