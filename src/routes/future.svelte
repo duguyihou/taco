@@ -2,19 +2,18 @@
 	import NewTask from '$lib/components/NewTask.svelte'
 	import Project from '$lib/components/Project.svelte'
 	import Header from '$lib/components/Header.svelte'
-	import { fly } from 'svelte/transition'
 	import { onMount } from 'svelte'
+	import { fly } from 'svelte/transition'
 
 	import { fetchAllTasks, tasks } from '$lib/store/tasks'
-
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
 	onMount(async () => await fetchAllTasks())
-	$: mainTasks = $tasks.data.filter(({ parent_id }) => !parent_id)
+	$: mainTasks = $tasks.data.filter(({ parent_id, due }) => !parent_id && due)
 </script>
 
-<svelte:head><title>Inbox | Taco</title></svelte:head>
+<svelte:head><title>Future | Taco</title></svelte:head>
 <div>
-	<Header title="Inbox" />
+	<Header title="Future" />
 	<section>
 		<NewTask />
 		{#if $tasks.isLoading}

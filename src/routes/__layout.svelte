@@ -1,18 +1,12 @@
 <script lang="ts">
 	import Fa from 'svelte-fa'
-	import {
-		faInbox,
-		faCalendarDay,
-		faCalendarWeek,
-		faCheckSquare
-	} from '@fortawesome/free-solid-svg-icons'
+	import { faInbox, faCalendarDay, faCalendarWeek } from '@fortawesome/free-solid-svg-icons'
 	import '../app.postcss'
 
 	const links = [
 		{ title: 'Inbox', href: '/inbox', icon: faInbox },
 		{ title: 'Today', href: '/today', icon: faCalendarDay },
-		{ title: 'Week', href: '/week', icon: faCalendarWeek },
-		{ title: 'Done', href: '/done', icon: faCheckSquare }
+		{ title: 'Future', href: '/future', icon: faCalendarWeek }
 	]
 </script>
 
