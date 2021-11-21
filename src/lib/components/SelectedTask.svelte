@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Note from './Note.svelte'
-	import SubTask from './SubTask.svelte'
+	import Subtask from './Subtask.svelte'
 	import Due from './Due.svelte'
 	import TaskFooter from './TaskFooter.svelte'
 	import TaskHeader from './TaskHeader.svelte'
@@ -11,7 +11,7 @@
 	<form>
 		<TaskHeader task={$tasks.selected} />
 		<Due task={$tasks.selected} />
-		<SubTask task={$tasks.selected} />
+		<Subtask task={$tasks.selected} />
 		<Note task={$tasks.selected} />
 		<TaskFooter task={$tasks.selected} />
 	</form>
