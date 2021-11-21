@@ -9,7 +9,7 @@
 	import '../app.postcss'
 
 	const links = [
-		{ title: 'Inbox', href: '/', icon: faInbox },
+		{ title: 'Inbox', href: '/inbox', icon: faInbox },
 		{ title: 'Today', href: '/today', icon: faCalendarDay },
 		{ title: 'Week', href: '/week', icon: faCalendarWeek },
 		{ title: 'Done', href: '/done', icon: faCheckSquare }

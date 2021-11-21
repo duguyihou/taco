@@ -2,17 +2,15 @@
 	import NewTask from '$lib/components/NewTask.svelte'
 	import Project from '$lib/components/Project.svelte'
 	import Header from '$lib/components/Header.svelte'
-	import { onMount } from 'svelte'
 	import { fly } from 'svelte/transition'
 
-	import { fetchAllTasks, tasks } from '$lib/store/tasks'
+	import { tasks } from '$lib/store/tasks'
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
-	onMount(async () => await fetchAllTasks())
 </script>
 
-<svelte:head><title>Today | Taco</title></svelte:head>
+<svelte:head><title>Inbox | Taco</title></svelte:head>
 <div>
-	<Header title="Today" />
+	<Header title="Inbox" />
 	<section>
 		<NewTask />
 		{#if $tasks.isLoading}
