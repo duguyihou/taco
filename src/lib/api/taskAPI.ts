@@ -1,4 +1,4 @@
-import type { NewTask, Task } from '$lib/typings'
+import type { NewTask, Task, UpdateTask } from '$lib/typings'
 import request from '$lib/utils/request'
 import type { AxiosResponse } from 'axios'
 
@@ -17,7 +17,7 @@ export const close = (id: number): Promise<AxiosResponse<unknown, unknown>> =>
 export const reopen = (id: number): Promise<AxiosResponse<unknown, unknown>> =>
 	request({ method: 'POST', url: `/tasks/${id}/reopen` })
 
-export const update = (id: number, data: Task): Promise<AxiosResponse<unknown, unknown>> =>
+export const update = (id: number, data: UpdateTask): Promise<AxiosResponse<unknown, unknown>> =>
 	request({ method: 'POST', url: `/tasks/${id}`, data })
 
 export const deleteApi = (id: number): Promise<AxiosResponse<unknown, unknown>> =>

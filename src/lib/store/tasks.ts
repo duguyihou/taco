@@ -1,8 +1,10 @@
 import { add, close, deleteApi, getAll, getOneBy, reopen, update } from '$lib/api/taskAPI'
-import type { NewTask, Task, TasksStore } from '$lib/typings'
+import type { NewTask, Task, TasksStore, UpdateTask } from '$lib/typings'
 import { get, writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
 import { debounce } from 'lodash-es'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 const initialState = { isLoading: false, data: [], selected: null, error: '' }
 export const tasks = writable<TasksStore>(initialState)
@@ -97,18 +99,6 @@ export async function reopenTask(payload: Task): Promise<void> {
 	}
 }
 
-export async function updateTask(payload: Task): Promise<void> {
-	try {
-		const { id } = payload
-		const response = await update(id, payload)
-		if (response.status === 204) {
-			console.log('update task successfully')
-		}
-	} catch (error) {
-		console.error(error)
-	}
-}
-
 export async function deleteTask(payload: Task): Promise<void> {
 	try {
 		const { id } = payload
@@ -125,27 +115,6 @@ export async function deleteTask(payload: Task): Promise<void> {
 	}
 }
 
-export async function handleStar(payload: Task): Promise<void> {
-	try {
-		let { priority } = payload
-		priority === 1 ? (priority += 1) : (priority -= 1)
-		await updateTask({ ...payload, priority })
-		tasks.update((state) => {
-			if (state.selected && state.selected === payload) {
-				state.selected.priority = priority
-				const idx = state.data.findIndex((task) => task === payload)
-				state.data.splice(idx, 1, state.selected)
-				return state
-			} else {
-				const idx = state.data.findIndex((task) => task === payload)
-				state.data.splice(idx, 1, { ...payload, priority })
-				return state
-			}
-		})
-	} catch (error) {
-		console.error(error)
-	}
-}
 export const updateContent = debounce((payload: Task): void => {
 	const { id } = payload
 	tasks.update((state) => {
@@ -154,3 +123,54 @@ export const updateContent = debounce((payload: Task): void => {
 		return state
 	})
 }, 1000)
+
+export async function updateTask(id: number, payload: UpdateTask): Promise<void> {
+	try {
+		const response = await update(id, payload)
+		if (response.status === 204) {
+			console.log('update task successfully')
+		}
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+export async function handleStar(id: number, priority: number): Promise<void> {
+	try {
+		priority === 1 ? (priority += 1) : (priority -= 1)
+		await updateTask(id, { priority })
+		tasks.update((state) => {
+			if (state.selected && state.selected.id === id) {
+				state.selected.priority = priority
+				const idx = state.data.findIndex((task) => task.id === id)
+				const oldTask = state.data.find((task) => task.id === id)
+				state.data.splice(idx, 1, { ...oldTask, priority })
+				return state
+			} else {
+				const idx = state.data.findIndex((task) => task.id === id)
+				const oldTask = state.data.find((task) => task.id === id)
+				state.data.splice(idx, 1, { ...oldTask, priority })
+				return state
+			}
+		})
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+export const updateDue = async (id: number, date: string): Promise<void> => {
+	dayjs.extend(relativeTime)
+	const due = {
+		date: dayjs(date).format('YYYY-MM-DD'),
+		string: dayjs(date).fromNow(),
+		recurring: false
+	}
+	await updateTask(id, { due_date: dayjs(date).format('YYYY-MM-DD') })
+	tasks.update((state) => {
+		state.selected.due = due
+		const idx = state.data.findIndex((task) => task.id === id)
+		const oldTask = state.data.find((task) => task.id === id)
+		state.data.splice(idx, 1, { ...oldTask, due })
+		return state
+	})
+}

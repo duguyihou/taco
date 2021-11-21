@@ -10,7 +10,7 @@
 		if (task.description && event.key === 'Enter') {
 			event.preventDefault()
 			;(event.target as HTMLElement).blur()
-			await updateTask(task)
+			await updateTask(task.id, { description: task.description })
 		}
 	}, 1000)
 </script>

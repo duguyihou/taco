@@ -10,7 +10,7 @@
 {#if $tasks.selected}
 	<form>
 		<TaskHeader task={$tasks.selected} />
-		<Due />
+		<Due task={$tasks.selected} />
 		<SubTask />
 		<Note task={$tasks.selected} />
 		<TaskFooter task={$tasks.selected} />

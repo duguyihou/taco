@@ -13,7 +13,7 @@
 		if (event.key === 'Enter') {
 			event.preventDefault()
 			;(event.target as HTMLElement).blur()
-			await updateTask(task)
+			await updateTask(task.id, { content: task.content })
 		}
 	}
 </script>
