@@ -2,7 +2,7 @@
 	import Fa from 'svelte-fa'
 	import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 	import type { Task } from '$lib/typings'
-	import { updateDue } from '$lib/store/tasks'
+	import { updateDueDate } from '$lib/store/tasks'
 	import dayjs from 'dayjs'
 
 	export let task: Task
@@ -16,7 +16,7 @@
 		datepicker.type = 'text'
 		const date = (<HTMLInputElement>event.target).value
 		if (date) {
-			await updateDue(task.id, date)
+			await updateDueDate(task.id, date)
 		}
 	}
 </script>
