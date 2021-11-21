@@ -15,11 +15,21 @@ export interface Task {
 	url: string
 }
 
+export interface UpdateTask {
+	content?: string
+	description?: string
+	order?: number
+	priority?: number
+	label_ids?: number[]
+	due_date?: string
+	due_string?: string
+	due_datetime?: string
+}
 export interface Due {
-	date: string
-	datetime: string
-	recurring: boolean
 	string: string
+	date: string
+	recurring: boolean
+	datetime?: string
 	timezone?: string
 }
 

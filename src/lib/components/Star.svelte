@@ -11,7 +11,7 @@
 	aria-label="star"
 	type="button"
 	class:starred={task.priority > 1}
-	on:click={() => handleStar(task)}
+	on:click={() => handleStar(task.id, task.priority)}
 >
 	<Fa icon={faStar} size="sm" />
 </button>
