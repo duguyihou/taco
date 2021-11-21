@@ -4,14 +4,16 @@
 	import { updateTasksBy } from '$lib/store'
 	import { throttle } from 'lodash-es'
 
+	export let parent_id = 0
 	const initialValues = {
-		content: ''
+		content: '',
+		parent_id
 	} as NewTask
 	const { form, handleSubmit } = createForm({
 		initialValues,
 		onSubmit: async ({ content }) => {
 			if (content !== '') {
-				const newTask = { content }
+				const newTask = parent_id ? { content, parent_id } : { content }
 				await updateTasksBy(newTask)
 				$form.content = ''
 			}
@@ -19,9 +21,10 @@
 	})
 
 	const handleEnter = throttle(async (event: KeyboardEvent) => {
-		if ($form.content && event.key === 'Enter') {
+		if ($form.content !== '' && event.key === 'Enter') {
 			event.preventDefault()
-			await updateTasksBy($form)
+			const newTask = parent_id ? { content: $form.content, parent_id } : { content: $form.content }
+			await updateTasksBy(newTask)
 			$form.content = ''
 		}
 	}, 1000)

@@ -11,7 +11,7 @@
 	<form>
 		<TaskHeader task={$tasks.selected} />
 		<Due task={$tasks.selected} />
-		<SubTask />
+		<SubTask task={$tasks.selected} />
 		<Note task={$tasks.selected} />
 		<TaskFooter task={$tasks.selected} />
 	</form>

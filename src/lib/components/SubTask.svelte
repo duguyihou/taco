@@ -1,18 +1,22 @@
 <script lang="ts">
-	import Fa from 'svelte-fa'
-	import { faPlus } from '@fortawesome/free-solid-svg-icons'
+	import { tasks } from '$lib/store'
+	import type { Task as ITask } from '$lib/typings'
+	import NewTask from './NewTask.svelte'
+	import Task from './Task.svelte'
+
+	export let task: ITask
+	$: subTasks = $tasks.data.filter(({ parent_id }) => parent_id === task.id)
 </script>
 
 <section>
-	<Fa icon={faPlus} size="sm" />
-	<input type="text" placeholder="Add a subtask" />
+	{#each subTasks as subTask (subTask.id)}
+		<Task task={subTask} />
+	{/each}
+	<NewTask parent_id={task.id} />
 </section>
 
 <style lang="postcss">
 	section {
-		@apply w-full p-2 flex flex-row justify-start items-center;
-	}
-	input {
-		@apply ml-2;
+		@apply w-full p-2 flex flex-col justify-start items-center;
 	}
 </style>

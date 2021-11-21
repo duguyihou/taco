@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { tasks } from '$lib/store'
 	import Task from './Task.svelte'
+	$: mainTasks = $tasks.data.filter(({ parent_id }) => !parent_id)
 </script>
 
 <div>
-	{#each $tasks.data as task (task.id)}
+	{#each mainTasks as task (task.id)}
 		<Task {task} />
 	{/each}
 </div>
