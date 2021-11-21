@@ -28,7 +28,7 @@
 </div>
 {#if $tasks.selected}
 	<div class="selected-task" transition:fly>
-		<SelectedTask />
+		<SelectedTask task={$tasks.selected} />
 	</div>
 {/if}
 

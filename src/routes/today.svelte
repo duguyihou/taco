@@ -11,11 +11,6 @@
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
 	dayjs.extend(isToday)
 	onMount(async () => await fetchAllTasks())
-	$: mainTasks = $tasks.data.filter(({ parent_id, due }) => {
-		if (due) {
-			return !parent_id && due && dayjs(due.date).isToday()
-		}
-	})
 </script>
 
 <svelte:head><title>Today | Taco</title></svelte:head>
@@ -28,13 +23,13 @@
 		{:else if $tasks.error}
 			<h1>error</h1>
 		{:else}
-			<Project tasks={mainTasks} />
+			<Project tasks={$tasks.today} />
 		{/if}
 	</section>
 </div>
 {#if $tasks.selected}
 	<div class="selected-task" transition:fly>
-		<SelectedTask />
+		<SelectedTask task={$tasks.selected} />
 	</div>
 {/if}
 
