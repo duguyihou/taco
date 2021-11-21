@@ -4,8 +4,16 @@ import { get, writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
 import { debounce } from 'lodash-es'
 import dayjs from 'dayjs'
-
-const initialState = { isLoading: false, data: [], selected: null, error: '' }
+import isToday from 'dayjs/plugin/isToday.js'
+dayjs.extend(isToday)
+const initialState = {
+	isLoading: false,
+	data: [],
+	selected: null,
+	error: '',
+	today: [],
+	future: []
+}
 export const tasks = writable<TasksStore>(initialState)
 
 export async function fetchAllTasks(): Promise<Writable<TasksStore>> {
@@ -13,7 +21,17 @@ export async function fetchAllTasks(): Promise<Writable<TasksStore>> {
 		tasks.set({ ...initialState, isLoading: true })
 		const response = await getAll()
 		const { data } = response
-		tasks.set({ ...initialState, data: data.reverse() })
+		const today = data.filter(({ due, parent_id }) => {
+			if (due && !parent_id) {
+				return dayjs(due.date).isToday()
+			}
+		})
+		const future = data.filter(({ due, parent_id }) => {
+			if (due && !parent_id) {
+				return dayjs(due.date).isAfter(dayjs())
+			}
+		})
+		tasks.set({ ...initialState, data: data.reverse(), today, future })
 	} catch (error) {
 		console.error(error)
 		tasks.set({ ...initialState, error })

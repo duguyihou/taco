@@ -4,15 +4,17 @@
 	import Due from './Due.svelte'
 	import TaskFooter from './TaskFooter.svelte'
 	import TaskHeader from './TaskHeader.svelte'
-	import { tasks } from '$lib/store'
+	import type { Task } from '$lib/typings'
+
+	export let task: Task
 </script>
 
 <section>
-	<TaskHeader task={$tasks.selected} />
-	<Due task={$tasks.selected} />
-	<Subtask task={$tasks.selected} />
-	<Note task={$tasks.selected} />
-	<TaskFooter task={$tasks.selected} />
+	<TaskHeader {task} />
+	<Due {task} />
+	<Subtask {task} />
+	<Note {task} />
+	<TaskFooter {task} />
 </section>
 
 <style lang="postcss">

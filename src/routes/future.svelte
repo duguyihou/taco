@@ -8,7 +8,6 @@
 	import { fetchAllTasks, tasks } from '$lib/store/tasks'
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
 	onMount(async () => await fetchAllTasks())
-	$: mainTasks = $tasks.data.filter(({ parent_id, due }) => !parent_id && due)
 </script>
 
 <svelte:head><title>Future | Taco</title></svelte:head>
@@ -21,13 +20,13 @@
 		{:else if $tasks.error}
 			<h1>error</h1>
 		{:else}
-			<Project tasks={mainTasks} />
+			<Project tasks={$tasks.future} />
 		{/if}
 	</section>
 </div>
 {#if $tasks.selected}
 	<div class="selected-task" transition:fly>
-		<SelectedTask />
+		<SelectedTask task={$tasks.selected} />
 	</div>
 {/if}
 

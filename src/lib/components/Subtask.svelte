@@ -12,7 +12,9 @@
 	{#each subtasks as subtask (subtask.id)}
 		<Task task={subtask} />
 	{/each}
-	<NewTask parent_id={task.id} />
+	{#if task}
+		<NewTask parent_id={task.id} />
+	{/if}
 </section>
 
 <style lang="postcss">
