@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { tasks } from '$lib/store'
+	import type { Task as ITask } from '$lib/typings'
 	import Task from './Task.svelte'
-	$: mainTasks = $tasks.data.filter(({ parent_id }) => !parent_id)
+	export let tasks: ITask[]
 </script>
 
 <div>
-	{#each mainTasks as task (task.id)}
+	{#each tasks as task (task.id)}
 		<Task {task} />
 	{/each}
 </div>
