@@ -3,7 +3,6 @@
 	import type { NewTask } from '$lib/typings'
 	import { updateTasksBy } from '$lib/store'
 	import { throttle } from 'lodash-es'
-	import { fromPairs } from 'lodash-es'
 
 	export let parent_id = 0
 	const initialValues = {
