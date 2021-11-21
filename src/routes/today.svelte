@@ -11,7 +11,7 @@
 	import SelectedTask from '$lib/components/SelectedTask.svelte'
 	dayjs.extend(isToday)
 	onMount(async () => await fetchAllTasks())
-	$: mainTasks = $tasks.data.filter(({ id, content, parent_id, due }) => {
+	$: mainTasks = $tasks.data.filter(({ parent_id, due }) => {
 		if (due) {
 			return !parent_id && due && dayjs(due.date).isToday()
 		}
