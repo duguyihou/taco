@@ -30,23 +30,41 @@
 	}, 1000)
 </script>
 
-<form>
+<form class:maintask={!parent_id} class:subtask={!!parent_id}>
 	<div
+		class:maintask={!parent_id}
+		class:subtask={!!parent_id}
 		contenteditable
 		on:keydown={(event) => handleEnter(event)}
 		bind:textContent={$form.content}
 	/>
-	<button class:show={!$form.content} on:click={handleSubmit}>create</button>
+	<button
+		class:maintask={!parent_id}
+		class:subtask={!!parent_id}
+		class:show={!$form.content}
+		on:click={handleSubmit}>create</button
+	>
 </form>
 
 <style lang="postcss">
 	form {
-		@apply container overflow-hidden w-full px-2 mt-1 bg-blue border-0 shadow-xl  h-auto rounded flex flex-row justify-start items-start;
+		@apply container  w-full px-2 mt-1 border-0 shadow-xl   rounded flex flex-row justify-start items-start;
+	}
+
+	.maintask {
+		@apply bg-blue text-base;
+	}
+
+	.subtask {
+		@apply bg-grey-light text-blue text-sm;
 	}
 	div {
-		@apply w-full pl-6 py-1 m-px text-base rounded overflow-hidden bg-blue text-grey-light cursor-pointer focus:bg-grey-light focus:text-black-light focus:border-grey-light border-0 outline-none;
+		@apply w-full h-auto pl-6 py-1 m-px  rounded overflow-hidden bg-blue text-grey-light cursor-pointer focus:bg-grey-light focus:text-black-light focus:border-grey-light border-0 outline-none;
 	}
-	div:before {
+	div:empty:before {
+		content: 'Add a to-do...';
+	}
+	div:focus:before {
 		content: '+';
 		position: relative;
 		left: -16px;
@@ -55,6 +73,6 @@
 		@apply bg-blue text-grey-light mt-px mb-px px-0.5 py-1 rounded;
 	}
 	.show {
-		visibility: hidden;
+		display: none;
 	}
 </style>
