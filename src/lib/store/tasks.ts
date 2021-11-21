@@ -4,7 +4,6 @@ import { get, writable } from 'svelte/store'
 import type { Writable } from 'svelte/store'
 import { debounce } from 'lodash-es'
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime.js'
 
 const initialState = { isLoading: false, data: [], selected: null, error: '' }
 export const tasks = writable<TasksStore>(initialState)
