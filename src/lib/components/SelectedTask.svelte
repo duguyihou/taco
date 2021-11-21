@@ -1,24 +1,22 @@
 <script lang="ts">
 	import Note from './Note.svelte'
-	import SubTask from './SubTask.svelte'
+	import Subtask from './Subtask.svelte'
 	import Due from './Due.svelte'
 	import TaskFooter from './TaskFooter.svelte'
 	import TaskHeader from './TaskHeader.svelte'
 	import { tasks } from '$lib/store'
 </script>
 
-{#if $tasks.selected}
-	<form>
-		<TaskHeader task={$tasks.selected} />
-		<Due task={$tasks.selected} />
-		<SubTask task={$tasks.selected} />
-		<Note task={$tasks.selected} />
-		<TaskFooter task={$tasks.selected} />
-	</form>
-{/if}
+<section>
+	<TaskHeader task={$tasks.selected} />
+	<Due task={$tasks.selected} />
+	<Subtask task={$tasks.selected} />
+	<Note task={$tasks.selected} />
+	<TaskFooter task={$tasks.selected} />
+</section>
 
 <style lang="postcss">
-	form {
+	section {
 		@apply relative bg-grey-light w-full h-screen p-2 border-none text-base flex flex-col justify-start items-center;
 	}
 </style>

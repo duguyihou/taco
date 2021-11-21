@@ -5,12 +5,12 @@
 	import Task from './Task.svelte'
 
 	export let task: ITask
-	$: subTasks = $tasks.data.filter(({ parent_id }) => parent_id === task.id)
+	$: subtasks = $tasks.data.filter(({ parent_id }) => parent_id === task.id)
 </script>
 
 <section>
-	{#each subTasks as subTask (subTask.id)}
-		<Task task={subTask} />
+	{#each subtasks as subtask (subtask.id)}
+		<Task task={subtask} />
 	{/each}
 	<NewTask parent_id={task.id} />
 </section>

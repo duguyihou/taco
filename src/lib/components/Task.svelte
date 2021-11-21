@@ -8,11 +8,14 @@
 	export let task: Task
 	$: selected = $tasks.selected === task
 	$: ({ id, content } = task)
+	const handleSelect = () => {
+		if (!task.parent_id) selectTaskBy(id)
+	}
 </script>
 
 <form class:selected>
 	<Checkbox {task} />
-	<p class="content" on:click={() => selectTaskBy(id)}>{content}</p>
+	<p class="content" on:click={() => handleSelect()}>{content}</p>
 	<Star {task} />
 </form>
 
